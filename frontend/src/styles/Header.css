@@ -1,0 +1,15 @@
+.header-global {
+    background-color: rgb(241, 239, 236);
+    display: flex;
+    justify-content: space-between;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.header-nav ul {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
 import Layout from './components/Layout';
-import App from './App';
+import Home from './pages/Home';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -11,9 +11,10 @@ root.render(
     <Router>
       <Layout>
         <Routes>
-          <Route>       
-            <App />
-          </Route>
+         <Route
+          path="/"
+          element={<Home />}
+         />
         </Routes>
       </Layout>
     </Router>
