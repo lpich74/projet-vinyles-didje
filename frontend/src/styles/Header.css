@@ -1,10 +1,14 @@
 .header-global {
-    background-color: rgb(241, 239, 236);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-left: 100px;
     padding-right: 100px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .header-nav {
