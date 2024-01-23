@@ -2,14 +2,32 @@
     background-color: rgb(241, 239, 236);
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding-left: 100px;
     padding-right: 100px;
 }
 
-.header-nav ul {
-    margin-top: 80px;
+.header-nav {
+    margin-top: 70px;
+    margin-bottom: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    list-style: none;
+}
+
+.header-link {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    margin-left: 40px;
+}
+
+.header-link:hover {
+    color: rgb(134, 25, 114);
+}
+
+.header-nav .active {
+    text-decoration: underline;
 }
