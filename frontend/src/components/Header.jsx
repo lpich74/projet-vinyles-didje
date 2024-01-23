@@ -18,9 +18,9 @@ function Header() {
                 <Link to="/ajouter-un-disque" className={`header-link ${location.pathname === '/ajouter-un-disque' && 'active'}`}>
                     Ajouter un Disque
                 </Link>
-                <Link to="/contact" className={`header-link ${location.pathname === '/contact' && 'active'}`}>
+                <a href='mailto:didierpichollet@free.fr' className={`header-link`}>
                     Contact
-                </Link>
+                </a>
             </nav>
       </header>
     )

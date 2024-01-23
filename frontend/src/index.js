@@ -6,7 +6,6 @@ import Layout from './components/Layout';
 import Home from './pages/Home.jsx';
 import MyRecords from './pages/MyRecords.jsx';
 import AddARecord from './pages/AddARecord.jsx'
-import Contact from './pages/Contact.jsx'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -25,10 +24,6 @@ root.render(
           <Route
            path="/ajouter-un-disque"
            element={<AddARecord />}
-          />
-          <Route
-           path="/contact"
-           element={<Contact />}
           />
         </Routes>
       </Layout>
