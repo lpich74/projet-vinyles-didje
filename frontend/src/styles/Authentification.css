@@ -1,0 +1,38 @@
+form {
+    width: 100%;
+    margin-top: 50px;
+    border: solid black 1px;
+    border-radius: 10px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    padding: 50px;
+    background-color: rgb(225, 222, 219);
+}
+
+form label {
+    margin-right: 10px;
+}
+
+form input {
+    width: 200px;
+    height: 20px;
+}
+
+.label-input {
+    margin-bottom: 25px;
+}
+
+.button-box {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+button {
+    cursor: pointer;
+    padding: 5px 15px;
+    font-size: 1em;
+    color: white;
+    background-color: rgb(134, 25, 114);
+    border-radius: 10px;
+}

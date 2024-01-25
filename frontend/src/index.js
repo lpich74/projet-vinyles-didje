@@ -5,7 +5,7 @@ import './index.css';
 import Layout from './components/Layout';
 import Home from './pages/Home.jsx';
 import MyRecords from './pages/MyRecords.jsx';
-import AddARecord from './pages/AddARecord.jsx'
+import AddARecord from './pages/AddARecord.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -1,6 +1,8 @@
+import Authentification from '../components/Authentification';
+
 function AddARecord() {
     return (
-        <h1>AJOUTER UN VINYLE</h1>
+        <Authentification />
     )
 }
 
