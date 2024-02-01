@@ -11,6 +11,17 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.logo-title {
+    display: flex;
+    align-items: center;
+}
+
+.logo-title h1 {
+    font-family: 'Dancing Script', 'Roboto', sans-serif;
+    margin: 0 0 0 20px;
+    max-width: 200px;
+}
+
 .header-nav {
     margin-top: 70px;
     margin-bottom: 30px;

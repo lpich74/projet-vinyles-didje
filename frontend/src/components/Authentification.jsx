@@ -13,7 +13,7 @@ function Authentification() {
   };
 
   return (
-    <div>
+    <div className='form-box'>
       <form onSubmit={handleSubmit}>
         <div className='label-input'>
           <label htmlFor="username">Identifiant :</label>

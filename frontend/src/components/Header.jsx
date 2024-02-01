@@ -7,7 +7,10 @@ function Header() {
 
     return (
         <header className='header-global'>
-            <img src={HeaderLogo} alt='record logo' height={80} width={80} />
+            <div className='logo-title'>
+                <img src={HeaderLogo} alt='record logo' height={80} width={80} />
+                <h1>Les Vinyles de Didje</h1>
+            </div>
             <nav className='header-nav'>
                 <Link to="/" className={`header-link ${location.pathname === '/' && 'active'}`}>
                     Accueil
