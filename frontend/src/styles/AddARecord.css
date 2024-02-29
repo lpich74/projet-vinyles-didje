@@ -1,0 +1,22 @@
+.grade-box {
+    display: flex;
+    align-items: center;
+}
+
+.star-rating {
+    cursor: pointer;
+    display: flex;
+    gap: 1%;
+}
+
+.star {
+    font-size: 25px;
+}
+
+.star-selected {
+    color: rgb(229, 199, 1);
+}
+
+.star-unselected {
+    color: grey;
+}
