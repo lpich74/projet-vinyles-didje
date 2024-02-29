@@ -20,3 +20,8 @@
 .star-unselected {
     color: grey;
 }
+
+.label-input select {
+    width: 200px;
+    padding: 4px 5px;
+}

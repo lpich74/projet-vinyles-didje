@@ -19,16 +19,8 @@ function AddARecord() {
         console.log('Record Data:', { cover, artist, album, genre, grade, state, comments });
       };
     
-    const handleStarHover = (index) => {
-        setGrade(index + 1);
-    };
-
-    const handleStarLeave = () => {
-        setGrade(0);
-    };
-
-    const handleStarClick = (index) => {
-        setGrade(index + 1);
+    const handleStarClick = (value) => {
+        setGrade(value);
     };
 
     return (
@@ -38,9 +30,10 @@ function AddARecord() {
                 <div className='label-input'>
                     <label htmlFor="cover">Pochette :</label>
                     <input
-                        type="text"
+                        type="file"
                         id="cover"
                         name="cover"
+                        accept=".jpg, .jpeg, .png, .svg, .webp"
                         value={cover}
                         onChange={(e) => setCover(e.target.value)}
                         required
@@ -80,31 +73,31 @@ function AddARecord() {
                 </div>
                 <div className='label-input grade-box'>
                     <label htmlFor="grade">Note :</label>
-                    <div className="star-rating" onMouseLeave={handleStarLeave}>
-                            {[1, 2, 3, 4, 5].map((index) => (
+                    <div className="star-rating">
+                            {[1, 2, 3, 4, 5].map((star) => (
                                 <FaStar
-                                key={index}
-                                className={index < grade ? "star star-selected" : "star star-unselected"}
-                                onMouseEnter={() => handleStarHover(index)}
-                                onClick={() => handleStarClick(index)}
-                            />
+                                    key={star}
+                                    className={star <= grade ? "star star-selected" : "star star-unselected"}
+                                    onClick={() => handleStarClick(star)}
+                                />
                             ))}
                     </div>
                 </div>
                 <div className='label-input'>
                     <label htmlFor="state">État du disque :</label>
                     <select
-                            id="state"
-                            name="state"
-                            value={state}
-                            onChange={(e) => setState(e.target.value)}
-                        >
-                            <option value="">. . .</option>
-                            <option value="bon">Excellent</option>
-                            <option value="bon">Bon</option>
-                            <option value="moyen">Moyen</option>
-                            <option value="mauvais">Mauvais</option>
-                        </select>
+                        id="state"
+                        name="state"
+                        value={state}
+                        required
+                        onChange={(e) => setState(e.target.value)}
+                    >
+                        <option value="">. . .</option>
+                        <option value="bon">Excellent</option>
+                        <option value="bon">Bon</option>
+                        <option value="moyen">Moyen</option>
+                        <option value="mauvais">Mauvais</option>
+                    </select>
                 </div>
                 <div className='label-input'>
                     <label htmlFor="comments">Commentaires :</label>
