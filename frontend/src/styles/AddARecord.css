@@ -25,3 +25,13 @@
     width: 200px;
     padding: 4px 5px;
 }
+
+.comment-box {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+}
+
+#comments {
+    padding: 5px;
+}

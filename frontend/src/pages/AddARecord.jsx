@@ -99,14 +99,15 @@ function AddARecord() {
                         <option value="mauvais">Mauvais</option>
                     </select>
                 </div>
-                <div className='label-input'>
+                <div className='label-input comment-box'>
                     <label htmlFor="comments">Commentaires :</label>
-                    <input
-                        type="text"
+                    <textarea
                         id="comments"
                         name="comments"
                         value={comments}
                         onChange={(e) => setComments(e.target.value)}
+                        rows={6}
+                        cols={45}
                     />
                 </div>
                 <div className='button-box'>
