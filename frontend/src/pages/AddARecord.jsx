@@ -18,6 +18,24 @@ function AddARecord() {
         // AJOUTER LA LOGIQUE D'AJOUT DE DISQUE
         console.log('Record Data:', { cover, artist, album, genre, grade, state, comments });
       };
+
+    const handleCoverChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const maxPhotoSize = 1 * 1024 * 1024;
+            if (file.size > maxPhotoSize) {
+                alert('Taille de 1mo dépassée !');
+                setCover('');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setCover(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
     
     const handleStarClick = (value) => {
         setGrade(value);
@@ -25,19 +43,28 @@ function AddARecord() {
 
     return (
         <div>
-            <div className='form-box'>
+            <div className='form-box-addrecord'>
             <form onSubmit={handleSubmit}>
-                <div className='label-input'>
+                <div hidden className='label-input'>
                     <label htmlFor="cover">Pochette :</label>
                     <input
                         type="file"
                         id="cover"
                         name="cover"
                         accept=".jpg, .jpeg, .png, .svg, .webp"
-                        value={cover}
-                        onChange={(e) => setCover(e.target.value)}
+                        onChange={handleCoverChange}
                         required
                     />
+                </div>
+                <div className='cover-preview-box'>
+                    <label htmlFor="cover" className="add-cover-button">
+                        Ajouter Pochette
+                    </label>
+                    {cover && (
+                        <div className="cover-preview">
+                            <img src={cover} alt="cover preview" />
+                        </div>
+                    )}
                 </div>
                 <div className='label-input'>
                     <label htmlFor="artist">Artiste :</label>
