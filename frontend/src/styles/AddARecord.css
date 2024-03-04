@@ -1,3 +1,7 @@
+.hidden {
+    display: none;
+}
+
 .form-box-addrecord form {
     display: flex;
     flex-direction: column;
@@ -13,6 +17,17 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 25px;
+}
+
+.add-cover {
+    cursor: pointer;
+    margin: 0;
+}
+
+.add-cover:hover {
+    color: gray;
+    margin-bottom: 5px;
+    font-size: 1.1em;
 }
 
 .cover-preview {

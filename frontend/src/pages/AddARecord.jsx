@@ -14,8 +14,15 @@ function AddARecord() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setCover('');
+        setArtist('');
+        setAlbum('');
+        setGenre('');
+        setGrade('0');
+        setState('');
+        setComments('');
+        window.alert('Nouveau disque enregistré');
     
-        // AJOUTER LA LOGIQUE D'AJOUT DE DISQUE
         console.log('Record Data:', { cover, artist, album, genre, grade, state, comments });
       };
 
@@ -57,7 +64,7 @@ function AddARecord() {
                     />
                 </div>
                 <div className='cover-preview-box'>
-                    <label htmlFor="cover" className="add-cover-button">
+                    <label htmlFor="cover" className={`add-cover ${cover ? 'hidden' : ''}`}>
                         Ajouter Pochette
                     </label>
                     {cover && (
