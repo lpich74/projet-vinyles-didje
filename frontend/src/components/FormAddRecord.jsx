@@ -20,7 +20,7 @@ function FormAddRecord () {
         setGrade('0');
         setState('');
         setComments('');
-        window.alert('Nouveau disque enregistré');
+        window.alert('Nouveau disque enregistré !');
     
         console.log('Record Data:', { cover, artist, album, genre, grade, state, comments });
       };
@@ -71,7 +71,7 @@ function FormAddRecord () {
                         </div>
                     )}
                 </div>
-                <div className='label-input'>
+                <div className='label-input addrecord'>
                     <label htmlFor="artist">Artiste :</label>
                     <input
                         type="text"
@@ -82,7 +82,7 @@ function FormAddRecord () {
                         required
                     />
                 </div>
-                <div className='label-input'>
+                <div className='label-input addrecord'>
                     <label htmlFor="album">Album :</label>
                     <input
                         type="text"
@@ -93,7 +93,7 @@ function FormAddRecord () {
                         required
                     />
                 </div>
-                <div className='label-input'>
+                <div className='label-input addrecord'>
                     <label htmlFor="genre">Genre :</label>
                     <input
                         type="text"
@@ -103,7 +103,7 @@ function FormAddRecord () {
                         onChange={(e) => setGenre(e.target.value)}
                     />
                 </div>
-                <div className='label-input grade-box'>
+                <div className='label-input addrecord grade-box'>
                     <label htmlFor="grade">Note :</label>
                     <div className="star-rating">
                             {[1, 2, 3, 4, 5].map((star) => (
@@ -115,7 +115,7 @@ function FormAddRecord () {
                             ))}
                     </div>
                 </div>
-                <div className='label-input'>
+                <div className='label-input addrecord'>
                     <label htmlFor="state">État du disque :</label>
                     <select
                         id="state"
