@@ -20,6 +20,12 @@ form input {
     height: 20px;
 }
 
+.authentification {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
 .label-input {
     margin-bottom: 25px;
 }

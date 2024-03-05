@@ -5,17 +5,28 @@ function Authentification() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleInscriptionSubmit = (event) => {
     event.preventDefault();
+    setUsername('');
+    setPassword('');
+    window.alert('Nouvel utilisateur enregistré !');
 
     // AJOUTER LA LOGIQUE D'AUTHENTIFICATION ICI
     console.log('Authentication Data:', { username, password });
   };
 
+  const handleConnectionSubmit = (event) => {
+    event.preventDefault();
+    setUsername('');
+    setPassword('');
+
+    console.log('Connection Data:', { username, password });
+  };
+
   return (
-    <div className='form-box'>
-      <form onSubmit={handleSubmit}>
-        <div className='label-input'>
+    <div className='form-box' style={{marginBottom: 70}}>
+      <form>
+        <div className='label-input authentification'>
           <label htmlFor="username">Identifiant :</label>
           <input
             type="text"
@@ -26,7 +37,7 @@ function Authentification() {
             required
           />
         </div>
-        <div className='label-input'>
+        <div className='label-input authentification'>
           <label htmlFor="password">Mot de Passe :</label>
           <input
             type="password"
@@ -38,8 +49,8 @@ function Authentification() {
           />
         </div>
         <div className='button-box'>
-            <button type="submit">S'inscrire</button>
-            <button type="submit">Connexion</button>
+          <button type="submit" onClick={handleInscriptionSubmit}>S'inscrire</button>
+          <button type="submit" onClick={handleConnectionSubmit}>Connexion</button>
         </div>
       </form>
     </div>
