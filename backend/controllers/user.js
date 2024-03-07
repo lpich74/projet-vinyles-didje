@@ -28,16 +28,15 @@ exports.login = (req, res) => {
                     if (!valid) {
                         return res.status(401).json({ message: 'Adresse e-mail ou mot de passe incorrect !' });
                     }
-                    res.status(200).json({
-                        userId: user._id,
-                        token: jwt.sign(
-                            { userId: user._id },
-                            process.env.SECRET_TOKEN,
-                            { expiresIn: '24h' }
-                        )
-                    });
+                    const userId = user._id;
+                    const token = jwt.sign(
+                        { userId: userId },
+                        process.env.SECRET_TOKEN,
+                        { expiresIn: '24h' }
+                    );
+                    res.status(200).json({ userId: userId, token: token }); // Send response
                 })
-                .catch(error => res.status(500).json({ error }));
+                .catch(error => res.status(500).json({ error })); // Handle bcrypt error
         })
-        .catch(error => res.status(500).json({ error }));
+        .catch(error => res.status(500).json({ error })); // Handle findOne error
 };

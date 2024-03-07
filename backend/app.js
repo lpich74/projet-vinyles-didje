@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 
 const userRoutes = require('./routes/user');
+const recordRoutes = require('./routes/record');
 
 const mongoose = require('mongoose');
 require('dotenv').config();
@@ -22,10 +23,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/', (req, res) => {
-    res.send('Ce serveur est utilisé pour le site des vinyles de Didje');
-});
-
 app.use('/api/auth', userRoutes);
+app.use('/api/records', recordRoutes);
 
 module.exports = app;

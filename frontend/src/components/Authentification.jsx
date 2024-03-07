@@ -38,7 +38,15 @@ function Authentification() {
     event.preventDefault();
 
     try {
-      const response = await axios.post(API_ROUTES.SIGN_IN, { username, password });
+      const token = localStorage.getItem('token');
+
+      const response = await axios.post(API_ROUTES.SIGN_IN, { username, password }, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+      
       if (response.status === 200) {
         setUsername('');
         setPassword('');
@@ -54,7 +62,7 @@ function Authentification() {
       window.alert("Erreur lors de la connexion !");
       console.error('Error signing in:', error.message);
     }
-  };
+  }
 
   return (
     <div className='form-box' style={{marginBottom: 70}}>

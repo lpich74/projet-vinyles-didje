@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
-import '../styles/FormAddRecord.css'
+import axios from 'axios'; // Importer axios
+import { API_ROUTES } from '../utils/constants'; // Importer API_ROUTES
+import '../styles/FormAddRecord.css';
 
-function FormAddRecord () {
+function FormAddRecord() {
     const [cover, setCover] = useState('');
     const [artist, setArtist] = useState('');
     const [album, setAlbum] = useState('');
@@ -11,26 +13,38 @@ function FormAddRecord () {
     const [state, setState] = useState('');
     const [comments, setComments] = useState('');
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        setCover('');
-        setArtist('');
-        setAlbum('');
-        setGenre('');
-        setGrade('0');
-        setState('');
-        setComments('');
-        window.alert('Nouveau disque enregistré !');
-    
-        console.log('Record Data:', { cover, artist, album, genre, grade, state, comments });
-      };
+
+        try {
+            const response = await axios.post(API_ROUTES.RECORDS, { cover, artist, album, genre, grade, state, comments });
+            if (response.status === 201) {
+                setCover('');
+                setArtist('');
+                setAlbum('');
+                setGenre('');
+                setGrade('0');
+                setState('');
+                setComments('');
+                window.alert('Nouveau disque enregistré !');
+
+                console.log('Record Data:', { cover, artist, album, genre, grade, state, comments });
+            } else {
+                window.alert("Échec lors de l'ajout du disque !");
+                console.error('Record failed to load:', response.statusText);
+            }
+        } catch (error) {
+            window.alert("Erreur lors de l'ajout du disque !");
+            console.error('Error while loading the record:', error.message);
+        }
+    };
 
     const handleCoverChange = (event) => {
         const file = event.target.files[0];
         if (file) {
             const maxPhotoSize = 1 * 1024 * 1024;
             if (file.size > maxPhotoSize) {
-                alert('Taille de 1mo dépassée !');
+                window.alert('Taille de 1mo dépassée !');
                 setCover('');
                 return;
             }
@@ -42,7 +56,7 @@ function FormAddRecord () {
             reader.readAsDataURL(file);
         }
     };
-    
+
     const handleStarClick = (value) => {
         setGrade(value);
     };
@@ -106,13 +120,13 @@ function FormAddRecord () {
                 <div className='label-input addrecord grade-box'>
                     <label htmlFor="grade">Note :</label>
                     <div className="star-rating">
-                            {[1, 2, 3, 4, 5].map((star) => (
-                                <FaStar
-                                    key={star}
-                                    className={star <= grade ? "star star-selected" : "star star-unselected"}
-                                    onClick={() => handleStarClick(star)}
-                                />
-                            ))}
+                        {[1, 2, 3, 4, 5].map((star) => (
+                            <FaStar
+                                key={star}
+                                className={star <= grade ? "star star-selected" : "star star-unselected"}
+                                onClick={() => handleStarClick(star)}
+                            />
+                        ))}
                     </div>
                 </div>
                 <div className='label-input addrecord'>
@@ -125,7 +139,7 @@ function FormAddRecord () {
                         onChange={(e) => setState(e.target.value)}
                     >
                         <option value="">. . .</option>
-                        <option value="bon">Excellent</option>
+                        <option value="excellent">Excellent</option> {/* Correction des options de l'état */}
                         <option value="bon">Bon</option>
                         <option value="moyen">Moyen</option>
                         <option value="mauvais">Mauvais</option>
@@ -147,7 +161,7 @@ function FormAddRecord () {
                 </div>
             </form>
         </div>
-    )
+    );
 }
 
-export default FormAddRecord
+export default FormAddRecord;
