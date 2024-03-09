@@ -38,14 +38,7 @@ function Authentification() {
     event.preventDefault();
 
     try {
-      const token = localStorage.getItem('token');
-
-      const response = await axios.post(API_ROUTES.SIGN_IN, { username, password }, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
+      const response = await axios.post(API_ROUTES.SIGN_IN, { username, password });
       
       if (response.status === 200) {
         setUsername('');

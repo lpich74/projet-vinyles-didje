@@ -16,8 +16,10 @@ function FormAddRecord() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
+        const token = localStorage.getItem('token');
+        const headers = { 'Authorization': `Bearer ${token}` };
         try {
-            const response = await axios.post(API_ROUTES.RECORDS, { cover, artist, album, genre, grade, state, comments });
+            const response = await axios.post(API_ROUTES.RECORDS, { cover, artist, album, genre, grade, state, comments }, { headers: headers });
             if (response.status === 201) {
                 setCover('');
                 setArtist('');
