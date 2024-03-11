@@ -10,8 +10,14 @@ exports.signup = (req, res) => {
                 username: req.body.username,
                 password: hash
             });
+            const userId = user._id;
+            const token = jwt.sign(
+                { userId: userId },
+                process.env.SECRET_TOKEN,
+                { expiresIn: '24h' }
+            );
             user.save()
-                .then(() => res.status(200).json({ message: 'Utilisateur enregistré !' }))
+                .then(() => res.status(200).json({ message: 'Utilisateur enregistré !', token: token }))
                 .catch(error => res.status(400).json({ error }));
         })
         .catch(error => res.status(400).json({ error }));

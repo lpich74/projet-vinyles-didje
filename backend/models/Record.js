@@ -5,7 +5,8 @@ const recordSchema = mongoose.Schema({
     coverUrl: { type: String, required: true },
     artist: { type: String, required: true },
     album: { type: String, required: true },
-    genre: { type: String, required: true },   
+    genre: { type: String, required: true },
+    date: { type: Number, required: true },     
     grade: { type: Number, required: true },
     state: { type: String, required: true },
     comments: { type: String }

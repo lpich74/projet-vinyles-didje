@@ -9,6 +9,7 @@ function FormAddRecord() {
     const [artist, setArtist] = useState('');
     const [album, setAlbum] = useState('');
     const [genre, setGenre] = useState('');
+    const [date, setDate] = useState('');
     const [grade, setGrade] = useState('0');
     const [state, setState] = useState('');
     const [comments, setComments] = useState('');
@@ -19,7 +20,7 @@ function FormAddRecord() {
         const token = localStorage.getItem('token');
         const headers = { 'Authorization': `Bearer ${token}` };
         try {
-            const response = await axios.post(API_ROUTES.RECORDS, { cover, artist, album, genre, grade, state, comments }, { headers: headers });
+            const response = await axios.post(API_ROUTES.RECORDS, { cover, artist, album, genre, date, grade, state, comments }, { headers: headers });
             if (response.status === 201) {
                 setCover('');
                 setArtist('');
@@ -30,7 +31,7 @@ function FormAddRecord() {
                 setComments('');
                 window.alert('Nouveau disque enregistré !');
 
-                console.log('Record Data:', { cover, artist, album, genre, grade, state, comments });
+                console.log('Record Data:', { cover, artist, album, genre, date, grade, state, comments });
             } else {
                 window.alert("Échec lors de l'ajout du disque !");
                 console.error('Record failed to load:', response.statusText);
@@ -58,6 +59,20 @@ function FormAddRecord() {
             reader.readAsDataURL(file);
         }
     };
+
+    const generateDateOptions = () => {
+        const currentYear = new Date().getFullYear();
+        const years = [];
+        for (let year = currentYear; year >= 1900; year--) {
+            years.push(year);
+        }
+        return years.map((year) => (
+            <option key={year} value={year}>
+                {year}
+            </option>
+        ));
+    };
+    
 
     const handleStarClick = (value) => {
         setGrade(value);
@@ -119,6 +134,19 @@ function FormAddRecord() {
                         onChange={(e) => setGenre(e.target.value)}
                     />
                 </div>
+                <div className='label-input addrecord'>
+                    <label htmlFor="date">Date :</label>
+                    <select
+                        id="date"
+                        name="date"
+                        value={date}
+                        required
+                        onChange={(e) => setDate(e.target.value)}
+                    >
+                        <option value="">. . .</option>
+                        {generateDateOptions()}
+                    </select>
+                </div>
                 <div className='label-input addrecord grade-box'>
                     <label htmlFor="grade">Note :</label>
                     <div className="star-rating">
@@ -141,7 +169,7 @@ function FormAddRecord() {
                         onChange={(e) => setState(e.target.value)}
                     >
                         <option value="">. . .</option>
-                        <option value="excellent">Excellent</option> {/* Correction des options de l'état */}
+                        <option value="excellent">Excellent</option>
                         <option value="bon">Bon</option>
                         <option value="moyen">Moyen</option>
                         <option value="mauvais">Mauvais</option>
