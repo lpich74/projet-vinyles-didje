@@ -6,6 +6,7 @@ import '../styles/FormAddRecord.css';
 
 function FormAddRecord() {
     const [cover, setCover] = useState('');
+    const [coverPreview, setCoverPreview] = useState('');
     const [artist, setArtist] = useState('');
     const [album, setAlbum] = useState('');
     const [genre, setGenre] = useState('');
@@ -19,13 +20,26 @@ function FormAddRecord() {
 
         const token = localStorage.getItem('token');
         const headers = { 'Authorization': `Bearer ${token}` };
+
+        const formData = new FormData();
+        formData.append('cover', cover);
+        formData.append('artist', artist);
+        formData.append('album', album);
+        formData.append('genre', genre);
+        formData.append('date', date);
+        formData.append('grade', grade);
+        formData.append('state', state);
+        formData.append('comments', comments);
+
         try {
-            const response = await axios.post(API_ROUTES.RECORDS, { cover, artist, album, genre, date, grade, state, comments }, { headers: headers });
+            const response = await axios.post(API_ROUTES.RECORDS, formData, { headers: headers });
             if (response.status === 201) {
                 setCover('');
+                setCoverPreview('');
                 setArtist('');
                 setAlbum('');
                 setGenre('');
+                setDate('');
                 setGrade('0');
                 setState('');
                 setComments('');
@@ -51,10 +65,11 @@ function FormAddRecord() {
                 setCover('');
                 return;
             }
-
+    
             const reader = new FileReader();
             reader.onloadend = () => {
-                setCover(reader.result);
+                setCover(file);
+                setCoverPreview(reader.result);
             };
             reader.readAsDataURL(file);
         }
@@ -81,24 +96,22 @@ function FormAddRecord() {
     return (
         <div className='form-box-addrecord'>
             <form onSubmit={handleSubmit}>
-                <div hidden className='label-input'>
-                    <label htmlFor="cover">Pochette :</label>
+                <div className='cover-preview-box'>
+                    <label htmlFor="cover" className={`add-cover ${cover ? 'hidden' : ''}`}>
+                        Ajouter Pochette
+                    </label>
                     <input
                         type="file"
                         id="cover"
                         name="cover"
                         accept=".jpg, .jpeg, .png, .svg, .webp"
                         onChange={handleCoverChange}
+                        hidden
                         required
                     />
-                </div>
-                <div className='cover-preview-box'>
-                    <label htmlFor="cover" className={`add-cover ${cover ? 'hidden' : ''}`}>
-                        Ajouter Pochette
-                    </label>
-                    {cover && (
+                    {coverPreview && (
                         <div className="cover-preview">
-                            <img src={cover} alt="cover preview" />
+                            <img src={coverPreview} alt="cover preview" />
                         </div>
                     )}
                 </div>

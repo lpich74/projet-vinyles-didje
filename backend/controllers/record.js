@@ -1,15 +1,23 @@
-const Record = require('../models/Record')
+const Record = require('../models/Record');
 
 exports.createRecord = (req, res) => {
-    const recordObject = req.body;
+    const { artist, album, genre, date, grade, state, comments } = req.body;
+    const coverUrl = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
     const userId = req.auth.userId;
-    const coverUrl = `${req.protocol}://${req.get('host')}/images/${req.body.cover}`;
+
     const record = new Record({
-        ...recordObject,
-        userId: userId,
-        coverUrl: coverUrl
+        coverUrl: coverUrl,
+        artist: artist,
+        album: album,
+        genre: genre,
+        date: date,
+        grade: grade,
+        state: state,
+        comments: comments,
+        userId: userId
     });
+
     record.save()
-        .then(() => res.status(201).json({ message: 'Disque enregistré !'}))
-        .catch(error => res.status(400).json({ error })); 
+        .then(() => res.status(201).json({ message: 'Disque enregistré !' }))
+        .catch(error => res.status(400).json({ error }));
 };
