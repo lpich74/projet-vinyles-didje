@@ -1,5 +1,11 @@
 const Record = require('../models/Record');
 
+exports.getAllRecords = (req, res) => {
+    Record.find()
+        .then(records => res.status(200).json(records))
+        .catch(error => res.status(400).json({ error }))
+};
+
 exports.createRecord = (req, res) => {
     const { artist, album, genre, date, grade, state, comments } = req.body;
     const coverUrl = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;

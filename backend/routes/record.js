@@ -5,6 +5,8 @@ const multer = require('../middlewares/multer-config');
 
 const recordCtrl = require('../controllers/record.js');
 
+router.get('/', recordCtrl.getAllRecords);
+
 router.post('/', auth, multer.uploadImage, recordCtrl.createRecord);
 
 module.exports = router;
