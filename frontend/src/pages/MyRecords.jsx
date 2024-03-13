@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { API_ROUTES } from '../utils/constants';
 import Authentification from '../components/Authentification';
+import '../styles/MyRecords.css';
 
 function MyRecords() {
     const [records, setRecords] = useState([]);
@@ -43,7 +44,7 @@ function MyRecords() {
             <h1 className='title-homepage'>Mes disques</h1>
             <div className='grid-homepage'>
               {records.map((record) => (
-                  <img key={record._id} src={record.coverUrl} alt={record.album} height={200} width={200} />
+                  <img className='image-myrecords' key={record._id} src={record.coverUrl} alt={record.album} height={200} width={200} />
               ))}
             </div>
           </section>

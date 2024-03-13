@@ -1,0 +1,17 @@
+.image-myrecords:hover {
+    cursor: pointer;
+    width: calc(18% - 4px);
+    border: 2px solid rgb(134, 25, 114);
+}
+
+@media screen and (max-width: 1450px) {
+    .image-myrecords:hover {
+        width: calc(22% - 4px);
+    }
+}
+
+@media screen and (max-width: 934px) {
+    .image-myrecords:hover {
+        width: calc(30.6% - 4px);
+    }
+}
