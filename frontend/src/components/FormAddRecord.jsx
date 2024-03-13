@@ -14,9 +14,11 @@ function FormAddRecord() {
     const [grade, setGrade] = useState('0');
     const [state, setState] = useState('');
     const [comments, setComments] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setLoading(true);
 
         const token = localStorage.getItem('token');
         const headers = { 'Authorization': `Bearer ${token}` };
@@ -53,6 +55,8 @@ function FormAddRecord() {
         } catch (error) {
             window.alert("Erreur lors de l'ajout du disque !");
             console.error('Error while loading the record:', error.message);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -200,7 +204,9 @@ function FormAddRecord() {
                     />
                 </div>
                 <div className='button-box'>
-                    <button type="submit">Ajouter</button>
+                    <button type="submit" disabled={loading}>
+                        {loading ? 'Chargement...' : 'Ajouter'} 
+                    </button>
                 </div>
             </form>
         </div>
