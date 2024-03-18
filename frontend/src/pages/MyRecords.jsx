@@ -4,6 +4,7 @@ import { FaStar } from 'react-icons/fa';
 import axios from 'axios';
 import { API_ROUTES } from '../utils/constants';
 import Authentification from '../components/Authentification';
+import Filters from '../components/Filters';
 import Modal from '../components/Modal';
 import '../styles/MyRecords.css';
 
@@ -59,7 +60,8 @@ function MyRecords() {
             {isUserConnected() ? (
                 <section className='main-wrapper'>
                     <h1 className='title-homepage'>Mes disques</h1>
-                    <div className='grid-homepage'>
+                    <Filters />
+                    <div className='grid-homepage' style={{position: 'unset', top: 'unset'}}>
                         {records.map((record) => (
                             <React.Fragment key={record._id}>
                                 <img 

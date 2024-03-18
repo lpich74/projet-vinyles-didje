@@ -1,0 +1,29 @@
+.filters-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.filters-title-list {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filters-list {
+    list-style: none;
+    display: flex;
+}
+
+.filters-list li {
+    margin-right: 20px;
+    border: 1px solid rgb(187, 195, 195);
+    border-radius: 20px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.filters-list li:hover {
+    background-color: rgb(134, 25, 114, 0.9);
+    color: rgb(241, 239, 236);
+}
