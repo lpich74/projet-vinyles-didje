@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Filters.css';
 
-function Filters({records}) {
+function Filters({ records, setFilteredRecords }) {
     const [searchTerm, setSearchTerm] = useState('');
     const [activeFilter, setActiveFilter] = useState(null);
 
@@ -14,17 +14,25 @@ function Filters({records}) {
 
     const handleClickFilter = (filter) => {
         setActiveFilter(filterMappings[filter]);
+        setSearchTerm('');
     };
 
-    const filteredData = records.filter(val => {
-        if (activeFilter === 'artiste ou album') {
-            return (val.artist && val.album) &&
-                (val.artist.toLowerCase().includes(searchTerm) || val.album.toLowerCase().includes(searchTerm));
-        } else if (val[activeFilter]) {
-            return val[activeFilter].toLowerCase().includes(searchTerm);
-        }
-        return false;
-    });
+    const applyFilters = (filter, term) => {
+        const filteredData = records.filter(val => {
+            if (filter === 'artiste ou album') {
+                return (val.artist && val.album) &&
+                    (val.artist.toLowerCase().includes(term) || val.album.toLowerCase().includes(term));
+            } else if (val[filter]) {
+                return val[filter].toLowerCase().includes(term);
+            }
+            return false;
+        });
+        setFilteredRecords(filteredData);
+    };
+
+    useEffect(() => {
+        applyFilters(activeFilter, searchTerm);
+    }, [searchTerm]); // filtres appliqués dès que le terme recherché change
 
     return (
         <div className='filters-box'>
@@ -32,7 +40,13 @@ function Filters({records}) {
                 <h3>Filtrer par</h3>
                 <ul className='filters-list'>
                     {Object.keys(filterMappings).map((filter, index) => (
-                        <li key={index} onClick={() => handleClickFilter(filter)}>{filter}</li>
+                        <li
+                            key={index}
+                            onClick={() => handleClickFilter(filter)}
+                            className={activeFilter === filterMappings[filter] ? 'active' : ''}
+                        >
+                            {filter}
+                        </li>
                     ))}
                 </ul>
             </div>
@@ -43,16 +57,10 @@ function Filters({records}) {
                             type='text'
                             id='search'
                             name='search'
-                            placeholder={`Rechercher par ${activeFilter}`}
-                            onChange={(e) => setSearchTerm(e.target.value.trim().toLowerCase())}
+                            placeholder='Rechercher'
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value.toLowerCase())}
                         />
-                    </div>
-                    <div className='search-results'>
-                        {filteredData.map((record, index) => (
-                            <div key={index} className='search-result'>
-                                {activeFilter === 'artiste ou album' ? `${record.artist} - ${record.album}` : record[activeFilter]}
-                            </div>
-                        ))}
                     </div>
                 </React.Fragment>
             )}

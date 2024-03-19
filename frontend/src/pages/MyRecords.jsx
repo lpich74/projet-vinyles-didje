@@ -10,6 +10,7 @@ import '../styles/MyRecords.css';
 
 function MyRecords() {
     const [records, setRecords] = useState([]);
+    const [filteredRecords, setFilteredRecords] = useState([]);
     const [selectedRecord, setSelectedRecord] = useState(null);
     const [grade, setGrade] = useState('0');
     
@@ -41,6 +42,7 @@ function MyRecords() {
                     });
                     if (response.status === 200) {
                         setRecords(response.data);
+                        setFilteredRecords(response.data);
                         console.log('Records loaded successfully:', response.data);
                     } else {
                         window.alert('Échec lors de la récupération des disques !');
@@ -60,16 +62,16 @@ function MyRecords() {
             {isUserConnected() ? (
                 <section className='main-wrapper'>
                     <h1 className='title-homepage'>Mes disques</h1>
-                    <Filters records={records} />
-                    <div className='grid-homepage' style={{position: 'unset', top: 'unset'}}>
-                        {records.map((record) => (
+                    <Filters records={records} setFilteredRecords={setFilteredRecords} />
+                    <div className='grid-myrecords'>
+                        {filteredRecords.map((record) => (
                             <React.Fragment key={record._id}>
                                 <img 
-                                    className='image-myrecords' 
+                                    className={filteredRecords.length === 1 ? 'image-alone' : 'image-myrecords'}
                                     onClick={() => handleClick(record)} 
                                     src={record.coverUrl} 
                                     alt={record.album} 
-                                    height={200} 
+                                    height={200}
                                     width={200} 
                                 />
                                 {selectedRecord && selectedRecord._id === record._id && (
