@@ -1,35 +1,61 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Filters.css';
 
-function Filters() {
-    const [searchBoxes, setSearchBoxes] = useState({
-        title: false,
-        genre: false,
-        year: false,
-        state: false
-    });
+function Filters({records}) {
+    const [searchTerm, setSearchTerm] = useState('');
+    const [activeFilter, setActiveFilter] = useState(null);
+
+    const filterMappings = {
+        'Artiste / Album': 'artiste ou album',
+        'Genre': 'genre',
+        'Année': 'date',
+        'État du disque': 'state'
+    };
 
     const handleClickFilter = (filter) => {
-        setSearchBoxes({
-            ...searchBoxes,
-            [filter]: true
-        });
+        setActiveFilter(filterMappings[filter]);
     };
+
+    const filteredData = records.filter(val => {
+        if (activeFilter === 'artiste ou album') {
+            return (val.artist && val.album) &&
+                (val.artist.toLowerCase().includes(searchTerm) || val.album.toLowerCase().includes(searchTerm));
+        } else if (val[activeFilter]) {
+            return val[activeFilter].toLowerCase().includes(searchTerm);
+        }
+        return false;
+    });
 
     return (
         <div className='filters-box'>
             <div className='filters-title-list'>
                 <h3>Filtrer par</h3>
                 <ul className='filters-list'>
-                    <li onClick={() => handleClickFilter('title')}>Artiste / Album</li>
-                    <li onClick={() => handleClickFilter('genre')}>Genre</li>
-                    <li onClick={() => handleClickFilter('year')}>Année</li>
-                    <li onClick={() => handleClickFilter('state')}>État du disque</li>
+                    {Object.keys(filterMappings).map((filter, index) => (
+                        <li key={index} onClick={() => handleClickFilter(filter)}>{filter}</li>
+                    ))}
                 </ul>
             </div>
-            {Object.values(searchBoxes).includes(true) &&
-                <p>Rechercher</p>
-            }
+            {activeFilter && (
+                <React.Fragment>
+                    <div className='search-bar'>
+                        <input
+                            type='text'
+                            id='search'
+                            name='search'
+                            placeholder={`Rechercher par ${activeFilter}`}
+                            onChange={(e) => setSearchTerm(e.target.value.trim().toLowerCase())}
+                        />
+                    </div>
+                    <div className='search-results'>
+                        {filteredData.map((record, index) => (
+                            <div key={index} className='search-result'>
+                                {activeFilter === 'artiste ou album' ? `${record.artist} - ${record.album}` : record[activeFilter]}
+                            </div>
+                        ))}
+                    </div>
+                </React.Fragment>
+            )}
         </div>
     );
 }

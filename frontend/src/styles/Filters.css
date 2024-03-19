@@ -1,6 +1,7 @@
 .filters-box {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .filters-title-list {
@@ -26,4 +27,13 @@
 .filters-list li:hover {
     background-color: rgb(134, 25, 114, 0.9);
     color: rgb(241, 239, 236);
+}
+
+#search {
+    width: 300px;
+    padding: 10px 20px;
+    margin-top: 0;
+    margin-bottom: 40px;
+    border-radius: 30px;
+    border: 1px solid rgb(187, 195, 195);
 }

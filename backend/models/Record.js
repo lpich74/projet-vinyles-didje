@@ -6,7 +6,7 @@ const recordSchema = mongoose.Schema({
     artist: { type: String, required: true },
     album: { type: String, required: true },
     genre: { type: String, required: true },
-    date: { type: Number, required: true },     
+    date: { type: String, required: true },     
     grade: { type: Number, required: true },
     state: { type: String, required: true },
     comments: { type: String }

@@ -60,7 +60,7 @@ function MyRecords() {
             {isUserConnected() ? (
                 <section className='main-wrapper'>
                     <h1 className='title-homepage'>Mes disques</h1>
-                    <Filters />
+                    <Filters records={records} />
                     <div className='grid-homepage' style={{position: 'unset', top: 'unset'}}>
                         {records.map((record) => (
                             <React.Fragment key={record._id}>
