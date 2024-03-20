@@ -1,11 +1,9 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { API_ROUTES } from '../utils/constants';
+import { isUserConnected, getMyRecords } from '../functions/Functions';
 import Authentification from '../components/Authentification';
-import StarRating from '../components/StarRating';
+import ModalContent from '../components/ModalContent';
 import Filters from '../components/Filters';
-import Modal from '../components/Modal';
 import '../styles/MyRecords.css';
 
 function MyRecords() {
@@ -13,42 +11,13 @@ function MyRecords() {
     const [filteredRecords, setFilteredRecords] = useState([]);
     const [selectedRecord, setSelectedRecord] = useState(null);
     
-    const isUserConnected = () => {
-        return localStorage.getItem('token') !== null;
-    };
-  
     const handleClick = (record) => {
         setSelectedRecord(record);
     };
 
-    const handleClose = () => {
-        setSelectedRecord(null);
-    };
-
     useEffect(() => {
         if (isUserConnected()) {
-            const getMyRecords = async () => {
-                try {
-                    const token = localStorage.getItem('token');
-                    const response = await axios.get(API_ROUTES.MY_RECORDS, {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        }
-                    });
-                    if (response.status === 200) {
-                        setRecords(response.data);
-                        setFilteredRecords(response.data);
-                        console.log('Records loaded successfully:', response.data);
-                    } else {
-                        window.alert('Échec lors de la récupération des disques !');
-                        console.error('Records failed to load:', response.statusText);
-                    }
-                } catch (error) {
-                    window.alert('Erreur lors de la récupération des disques !');
-                    console.error('Error retrieving the records:', error.message);
-                }
-            };
-            getMyRecords();
+            getMyRecords(setRecords, setFilteredRecords);
         }
     }, []);
     
@@ -70,20 +39,7 @@ function MyRecords() {
                                     width={200} 
                                 />
                                 {selectedRecord && selectedRecord._id === record._id && (
-                                    <Modal isOpen={true} handleClose={handleClose}>
-                                        <header style={{display: 'flex', justifyContent: 'space-around'}}>
-                                            <h2>{selectedRecord.album}</h2>
-                                            <img src={record.coverUrl} alt={record.album} style={{width: 80, height: 80}} />
-                                        </header>
-                                        <div className='modal-content-box'>
-                                            <div>{selectedRecord.artist}</div>
-                                            <div>{selectedRecord.genre}</div>
-                                            <div>{selectedRecord.date}</div>
-                                            <StarRating selectedRecord={selectedRecord} readOnly={true} />
-                                            <div>{selectedRecord.state}</div>
-                                            <div>{selectedRecord.comments}</div>
-                                        </div>
-                                    </Modal>
+                                    <ModalContent selectedRecord={selectedRecord} setSelectedRecord={setSelectedRecord} record={record} />
                                 )}
                             </React.Fragment>
                         ))}

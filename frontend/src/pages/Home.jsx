@@ -1,30 +1,14 @@
 import '../styles/Home.css';
 import { useEffect, useState } from 'react';
-import axios from 'axios'; // Importer axios
-import { API_ROUTES } from '../utils/constants'; // Importer API_ROUTES
+import { getAllRecords } from '../functions/Functions';
 
 function Home() {
     const [records, setRecords] = useState([]);
 
     useEffect(() => {
-        const getAllRecords = async () => {
-            try {
-                const response = await axios.get(API_ROUTES.RECORDS);
-                if (response.status === 200) {
-                    setRecords(response.data);
-                    console.log('Records loaded successfully:', response.data);
-                } else {
-                    window.alert('Échec lors de la récupération des disques !');
-                    console.error('Records failed to load:', response.statusText);
-                }
-            } catch (error) {
-                window.alert('Erreur lors de la récupération des disques !');
-                console.error('Error retrieving the records:', error.message);
-            }
-        };
-        // Call the function when the component mounts
-        getAllRecords();
-    }, []); // Empty dependency array means this effect runs once when the component mounts
+        // Appelle la fonction lorsque le composant se monte
+        getAllRecords(setRecords);
+    }, []); // Array vide = l'effet se produit dès que le composant se monte
 
     return (
         <section className='main-wrapper'>

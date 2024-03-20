@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios'; // Importer axios
 import { API_ROUTES } from '../utils/constants'; // Importer API_ROUTES
+import { generateDateOptions, handleCoverChange } from '../functions/Functions';
 import StarRating from './StarRating';
 import '../styles/FormAddRecord.css';
 
@@ -60,38 +61,6 @@ function FormAddRecord() {
         }
     };
 
-    const handleCoverChange = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            const maxPhotoSize = 1 * 1024 * 1024;
-            if (file.size > maxPhotoSize) {
-                window.alert('Taille de 1mo dépassée !');
-                setCover('');
-                return;
-            }
-    
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setCover(file);
-                setCoverPreview(reader.result);
-            };
-            reader.readAsDataURL(file);
-        }
-    };
-
-    const generateDateOptions = () => {
-        const currentYear = new Date().getFullYear();
-        const years = [];
-        for (let year = currentYear; year >= 1900; year--) {
-            years.push(year);
-        }
-        return years.map((year) => (
-            <option key={year} value={year}>
-                {year}
-            </option>
-        ));
-    };
-
     return (
         <div className='form-box-addrecord'>
             <form onSubmit={handleSubmit}>
@@ -104,7 +73,7 @@ function FormAddRecord() {
                         id="cover"
                         name="cover"
                         accept=".jpg, .jpeg, .png, .svg, .webp"
-                        onChange={handleCoverChange}
+                        onChange={(event) => handleCoverChange(event, setCover, setCoverPreview)}
                         hidden
                         required
                     />
