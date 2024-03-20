@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { FaStar } from 'react-icons/fa';
 import axios from 'axios'; // Importer axios
 import { API_ROUTES } from '../utils/constants'; // Importer API_ROUTES
+import StarRating from './StarRating';
 import '../styles/FormAddRecord.css';
 
 function FormAddRecord() {
@@ -11,7 +11,7 @@ function FormAddRecord() {
     const [album, setAlbum] = useState('');
     const [genre, setGenre] = useState('');
     const [date, setDate] = useState('');
-    const [grade, setGrade] = useState('0');
+    const [grade, setGrade] = useState(0);
     const [state, setState] = useState('');
     const [comments, setComments] = useState('');
     const [loading, setLoading] = useState(false);
@@ -42,7 +42,7 @@ function FormAddRecord() {
                 setAlbum('');
                 setGenre('');
                 setDate('');
-                setGrade('0');
+                setGrade(0);
                 setState('');
                 setComments('');
                 window.alert('Nouveau disque enregistré !');
@@ -90,11 +90,6 @@ function FormAddRecord() {
                 {year}
             </option>
         ));
-    };
-    
-
-    const handleStarClick = (value) => {
-        setGrade(value);
     };
 
     return (
@@ -166,15 +161,7 @@ function FormAddRecord() {
                 </div>
                 <div className='label-input addrecord grade-box'>
                     <label htmlFor="grade">Note :</label>
-                    <div className="star-rating">
-                        {[1, 2, 3, 4, 5].map((star) => (
-                            <FaStar
-                                key={star}
-                                className={star <= grade ? "star star-selected" : "star star-unselected"}
-                                onClick={() => handleStarClick(star)}
-                            />
-                        ))}
-                    </div>
+                    <StarRating initialGrade={grade} onChange={setGrade} />
                 </div>
                 <div className='label-input addrecord'>
                     <label htmlFor="state">État du disque :</label>

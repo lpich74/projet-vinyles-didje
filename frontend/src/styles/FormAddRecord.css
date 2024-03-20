@@ -45,24 +45,6 @@
     align-items: center;
 }
 
-.star-rating {
-    cursor: pointer;
-    display: flex;
-    gap: 1%;
-}
-
-.star {
-    font-size: 25px;
-}
-
-.star-selected {
-    color: rgb(244, 201, 44);
-}
-
-.star-unselected {
-    color: grey;
-}
-
 .addrecord {
     margin-bottom: 30px;
 }

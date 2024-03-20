@@ -1,9 +1,9 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { FaStar } from 'react-icons/fa';
 import axios from 'axios';
 import { API_ROUTES } from '../utils/constants';
 import Authentification from '../components/Authentification';
+import StarRating from '../components/StarRating';
 import Filters from '../components/Filters';
 import Modal from '../components/Modal';
 import '../styles/MyRecords.css';
@@ -12,22 +12,17 @@ function MyRecords() {
     const [records, setRecords] = useState([]);
     const [filteredRecords, setFilteredRecords] = useState([]);
     const [selectedRecord, setSelectedRecord] = useState(null);
-    const [grade, setGrade] = useState('0');
     
     const isUserConnected = () => {
         return localStorage.getItem('token') !== null;
-    };
-
-    const handleClose = () => {
-        setSelectedRecord(null);
     };
   
     const handleClick = (record) => {
         setSelectedRecord(record);
     };
 
-    const handleStarClick = (value) => {
-      setGrade(value);
+    const handleClose = () => {
+        setSelectedRecord(null);
     };
 
     useEffect(() => {
@@ -84,15 +79,7 @@ function MyRecords() {
                                             <div>{selectedRecord.artist}</div>
                                             <div>{selectedRecord.genre}</div>
                                             <div>{selectedRecord.date}</div>
-                                            <div className="star-rating">
-                                                {[1, 2, 3, 4, 5].map((star) => (
-                                                    <FaStar
-                                                        key={star}
-                                                        className={star <= selectedRecord.grade ? "star star-selected" : "star star-unselected"}
-                                                        onClick={() => handleStarClick(star)}
-                                                    />
-                                                ))}
-                                            </div>
+                                            <StarRating selectedRecord={selectedRecord} readOnly={true} />
                                             <div>{selectedRecord.state}</div>
                                             <div>{selectedRecord.comments}</div>
                                         </div>
