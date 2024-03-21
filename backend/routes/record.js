@@ -10,6 +10,8 @@ router.get('/myrecords/', auth, recordCtrl.getMyRecords);
 
 router.post('/', auth, multer.uploadImage, recordCtrl.createRecord);
 
+router.put('/:id', auth, multer.uploadImage, recordCtrl.modifyRecord);
+
 router.delete('/:id', auth, recordCtrl.deleteRecord);
 
 module.exports = router;

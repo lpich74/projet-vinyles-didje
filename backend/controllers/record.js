@@ -48,6 +48,10 @@ exports.createRecord = (req, res) => {
     }
 };
 
+exports.modifyRecord = (req, res) => {
+
+};
+
 exports.deleteRecord = (req, res) => {
     const paramsId = req.params.id
     const userId = req.auth.userId;
