@@ -1,4 +1,6 @@
 import { useEffect, useRef } from "react";
+import { RxCross1 } from "react-icons/rx";
+import '../styles/Modal.css'
 
 function Modal({ children, isOpen, handleClose }) {
     const dialogRef = useRef(null);
@@ -21,11 +23,15 @@ function Modal({ children, isOpen, handleClose }) {
         <dialog
             ref={dialogRef}
             onClose={close}
-            style={{minWidth: '35%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', border: 'purple 3px solid', borderRadius: '25px'}}
+            className="dialog-modal"
         >
+            <RxCross1 
+                className="rxcross1"
+                onClick={close}
+            />
             {children}
             <button
-                style={{width: 100, marginTop: 30, display: 'flex', justifyContent: 'center', alignItems: 'center'}}
+                className="button-modal"
                 type="button"
                 onClick={close}
                 title="close modal"

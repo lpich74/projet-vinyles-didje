@@ -9,14 +9,14 @@ function ModalContent ({selectedRecord, setSelectedRecord, record}) {
 
     return (
         <Modal isOpen={true} handleClose={handleClose}>
-        <header style={{width: '100%', display: 'flex', justifyContent: 'space-around', alignItems: 'center'}}>
+        <header className="modal-header">
             <h2>{selectedRecord.album}</h2>
             <img src={record.coverUrl} alt={record.album} style={{width: 80, height: 80}} />
         </header>
         <div className='modal-content-box'>
-            <div>{selectedRecord.artist}</div>
-            <div>{selectedRecord.genre}</div>
+            <div style={{fontSize: '1.3em'}}>{selectedRecord.artist}</div>
             <div>{selectedRecord.date}</div>
+            <div>{selectedRecord.genre}</div>
             <StarRating selectedRecord={selectedRecord} readOnly={true} />
             <div>{selectedRecord.state}</div>
             <div>{selectedRecord.comments}</div>
