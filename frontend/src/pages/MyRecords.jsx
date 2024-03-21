@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { isUserConnected, getMyRecords } from '../functions/Functions';
+import { isUserConnected, getMyRecords, handleDelete } from '../functions/Functions';
 import Authentification from '../components/Authentification';
 import { RxCross1 } from "react-icons/rx";
 import ModalContent from '../components/ModalContent';
@@ -40,6 +40,7 @@ function MyRecords() {
                                 {deleteButtonVisible === record._id &&
                                     <RxCross1
                                         className="rxcross1-miniature"
+                                        onClick={() => handleDelete(record._id, records, setRecords, filteredRecords, setFilteredRecords)}
                                     />
                                 }
                                 <img 

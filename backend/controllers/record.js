@@ -1,4 +1,5 @@
 const Record = require('../models/Record');
+const fs = require('fs');
 
 exports.getAllRecords = (req, res) => {
     Record.find()
@@ -45,4 +46,24 @@ exports.createRecord = (req, res) => {
     } catch (error) {
         res.status(500).json({ error: 'Internal Server Error' });
     }
+};
+
+exports.deleteRecord = (req, res) => {
+    const paramsId = req.params.id
+    const userId = req.auth.userId;
+
+    Record.findOne({ _id: paramsId })
+        .then((record) => {
+            if (record.userId != userId) {
+                res.status(403).json({ message: 'Requête non autorisée' });
+            } else {
+                const filename = record.coverUrl.split('/images/')[1];
+                fs.unlink(`images/${filename}`, () => {
+                    Record.deleteOne({ _id: paramsId })
+                    .then(() => res.status(200).json({ message: 'Disque supprimé !' }))
+                    .catch(error => res.status(401).json({ error }));
+                })
+            }
+        })
+        .catch(error => res.status(500).json({ error }));
 };

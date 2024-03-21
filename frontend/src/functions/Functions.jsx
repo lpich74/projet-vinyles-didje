@@ -73,4 +73,29 @@ export function generateDateOptions() {
             {year}
         </option>
     ));
-}
+};
+
+export async function handleDelete(recordId, records, setRecords, filteredRecords, setFilteredRecords) {
+    // ouvre une fenêtre de confirmation avant de supprimer définitivement le disque
+    const confirmation = window.confirm("Êtes-vous sûr de vouloir supprimer définitivement ce disque ?");
+
+    if (confirmation) {
+        const token = localStorage.getItem('token');
+        const headers = { 'Authorization': `Bearer ${token}` };
+
+        try {
+            const response = await axios.delete(`${API_ROUTES.RECORDS}/${recordId}`, { headers: headers });
+            if (response.status === 200) {
+                setRecords(records.filter(record => record._id !== recordId));
+                setFilteredRecords(filteredRecords.filter(record => record._id !== recordId));
+                window.alert('Disque supprimé !');
+            } else {
+                window.alert("Échec lors de la suppression du disque !");
+                console.error('Record failed to delete:', response.statusText);
+            }
+        } catch (error) {
+            window.alert("Erreur lors de la suppression du disque !");
+            console.error('Error while deleting the record:', error.message);
+        }
+    }
+};
