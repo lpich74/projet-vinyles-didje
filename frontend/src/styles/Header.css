@@ -48,3 +48,12 @@
 .header-nav .active {
     text-decoration: underline;
 }
+
+.disconnect {
+    color: red;
+}
+
+.disconnect:hover {
+    color: red;
+    text-decoration: underline;
+}

@@ -1,9 +1,19 @@
 import '../styles/Header.css';
 import { Link, useLocation } from 'react-router-dom'
+import { isUserConnected } from '../functions/Functions';
 import HeaderLogo from '../assets/record-logo.png';
 
 function Header() {
     const location = useLocation();
+
+    const deleteToken = () => {
+        const confirmation = window.confirm("Êtes-vous sûr de bien vouloir vous déconnecter ?");
+
+        if (confirmation) {
+            localStorage.removeItem('token');
+            window.location.href = '/';
+        }
+    };
 
     return (
         <header className='header-global'>
@@ -24,6 +34,11 @@ function Header() {
                 <a href='mailto:didierpichollet@free.fr' className={`header-link`}>
                     Contact
                 </a>
+                {isUserConnected() &&
+                    <Link className={`header-link disconnect`} onClick={deleteToken}>
+                        Déconnexion
+                    </Link>
+                }
             </nav>
       </header>
     )
