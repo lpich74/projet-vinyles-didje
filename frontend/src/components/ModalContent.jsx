@@ -18,7 +18,7 @@ function ModalContent ({selectedRecord, setSelectedRecord, record}) {
             <div>{selectedRecord.date}</div>
             <div>{selectedRecord.genre}</div>
             <StarRating selectedRecord={selectedRecord} readOnly={true} />
-            <div>{selectedRecord.state}</div>
+            <div style={{display: 'flex'}}>État {selectedRecord.state}</div>
             <div>{selectedRecord.comments}</div>
         </div>
     </Modal>

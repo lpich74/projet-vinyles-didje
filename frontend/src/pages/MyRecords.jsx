@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { isUserConnected, getMyRecords } from '../functions/Functions';
 import Authentification from '../components/Authentification';
+import { RxCross1 } from "react-icons/rx";
 import ModalContent from '../components/ModalContent';
 import Filters from '../components/Filters';
 import '../styles/MyRecords.css';
@@ -10,6 +11,7 @@ function MyRecords() {
     const [records, setRecords] = useState([]);
     const [filteredRecords, setFilteredRecords] = useState([]);
     const [selectedRecord, setSelectedRecord] = useState(null);
+    const [deleteButtonVisible, setDeleteButtonVisible] = useState(false);
     
     const handleClick = (record) => {
         setSelectedRecord(record);
@@ -29,9 +31,18 @@ function MyRecords() {
                     <Filters records={records} setFilteredRecords={setFilteredRecords} />
                     <div className='grid-myrecords'>
                         {filteredRecords.map((record) => (
-                            <React.Fragment key={record._id}>
+                            <div
+                                className={filteredRecords.length === 1 ? 'image-alone' : 'image-myrecords'}
+                                key={record._id}
+                                onMouseEnter={() => setDeleteButtonVisible(record._id)}
+                                onMouseLeave={() => setDeleteButtonVisible(null)}
+                            >
+                                {deleteButtonVisible === record._id &&
+                                    <RxCross1
+                                        className="rxcross1-miniature"
+                                    />
+                                }
                                 <img 
-                                    className={filteredRecords.length === 1 ? 'image-alone' : 'image-myrecords'}
                                     onClick={() => handleClick(record)} 
                                     src={record.coverUrl} 
                                     alt={record.album} 
@@ -41,7 +52,7 @@ function MyRecords() {
                                 {selectedRecord && selectedRecord._id === record._id && (
                                     <ModalContent selectedRecord={selectedRecord} setSelectedRecord={setSelectedRecord} record={record} />
                                 )}
-                            </React.Fragment>
+                            </div>
                         ))}
                     </div>
                 </section>
