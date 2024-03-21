@@ -1,0 +1,14 @@
+h2 {
+    font-family: 'Dancing Script', 'Roboto', sans-serif;
+    font-size: 2em;
+}
+
+.modal-content-box {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1em;
+    row-gap: 20px;
+}

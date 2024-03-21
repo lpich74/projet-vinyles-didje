@@ -5,7 +5,7 @@ function Modal({ children, isOpen, handleClose }) {
 
     const close = () => {
         dialogRef.current?.close();
-        handleClose(); // Call handleClose when closing the dialog
+        handleClose(); // Appelle handleClose à la fermeture de dialog
     };
 
     useEffect(() => {
@@ -21,10 +21,11 @@ function Modal({ children, isOpen, handleClose }) {
         <dialog
             ref={dialogRef}
             onClose={close}
-            style={{minWidth: '35%'}}
+            style={{minWidth: '35%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', border: 'purple 3px solid', borderRadius: '25px'}}
         >
             {children}
             <button
+                style={{width: 100, marginTop: 30, display: 'flex', justifyContent: 'center', alignItems: 'center'}}
                 type="button"
                 onClick={close}
                 title="close modal"

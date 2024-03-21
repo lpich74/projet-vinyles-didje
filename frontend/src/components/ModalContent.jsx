@@ -1,5 +1,6 @@
 import Modal from "./Modal";
 import StarRating from "./StarRating";
+import '../styles/ModalContent.css'
 
 function ModalContent ({selectedRecord, setSelectedRecord, record}) {
     const handleClose = () => {
@@ -8,7 +9,7 @@ function ModalContent ({selectedRecord, setSelectedRecord, record}) {
 
     return (
         <Modal isOpen={true} handleClose={handleClose}>
-        <header style={{display: 'flex', justifyContent: 'space-around'}}>
+        <header style={{width: '100%', display: 'flex', justifyContent: 'space-around', alignItems: 'center'}}>
             <h2>{selectedRecord.album}</h2>
             <img src={record.coverUrl} alt={record.album} style={{width: 80, height: 80}} />
         </header>

@@ -29,18 +29,6 @@
     border: 2px solid rgb(134, 25, 114);
 }
 
-h2 {
-    font-family: 'Dancing Script', 'Roboto', sans-serif;
-    font-size: 2em;
-}
-
-.modal-content-box {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    row-gap: 20px;
-}
-
 @media screen and (max-width: 1450px) {
     .grid-myrecords {
         gap: 4%;
