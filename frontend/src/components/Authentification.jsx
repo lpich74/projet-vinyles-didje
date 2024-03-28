@@ -85,10 +85,10 @@ function Authentification() {
           />
         </div>
         <div className='button-box'>
-          <button type="submit" onClick={handleInscriptionSubmit} disabled={loading}>
+          <button type="submit" className='btn-signup' onClick={handleInscriptionSubmit} disabled={loading}>
             {loading ? 'Chargement...' : "S'inscrire"}
           </button>
-          <button type="submit" onClick={handleConnectionSubmit} disabled={loading}>
+          <button type="submit" className='btn-signin' onClick={handleConnectionSubmit} disabled={loading}>
             {loading ? 'Chargement...' : 'Connexion'}
           </button>
         </div>
