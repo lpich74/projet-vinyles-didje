@@ -25,6 +25,8 @@ function ModifyARecord() {
 
     useEffect(() => {
         if (recordData) {
+            setCover('');
+            setCoverPreview('');
             setArtist(recordData.artist);
             setAlbum(recordData.album);
             setGenre(recordData.genre);
@@ -38,6 +40,12 @@ function ModifyARecord() {
     const handleSubmitModifiedForm = async (event) => {
         event.preventDefault();
         setLoading(true);
+
+        if (!cover) {
+            window.alert("Veuillez ajouter une pochette");
+            setLoading(false);
+            return;
+        }
 
         const token = localStorage.getItem('token');
         const headers = { 'Authorization': `Bearer ${token}` };
@@ -63,7 +71,7 @@ function ModifyARecord() {
             }
         } catch (error) {
             window.alert("Erreur lors de la modification du disque !");
-            console.error('Error while loading the record:', error.message);
+            console.error('Error while modifying the record:', error.message);
         } finally {
             setLoading(false);
         }

@@ -22,6 +22,12 @@ function AddARecord() {
       event.preventDefault();
       setLoading(true);
 
+      if (!cover) {
+        window.alert("Veuillez ajouter une pochette");
+        setLoading(false);
+        return;
+      }
+
       const token = localStorage.getItem('token');
       const headers = { 'Authorization': `Bearer ${token}` };
 
@@ -49,7 +55,7 @@ function AddARecord() {
               setComments('');
               window.alert('Nouveau disque enregistré !');
 
-              console.log('Record Data:', { cover, artist, album, genre, date, grade, state, comments });
+              console.log('Record Data:', { cover, coverPreview, artist, album, genre, date, grade, state, comments });
           } else {
               window.alert("Échec lors de l'ajout du disque !");
               console.error('Record failed to load:', response.statusText);

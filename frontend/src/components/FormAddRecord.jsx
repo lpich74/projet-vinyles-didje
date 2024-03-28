@@ -40,7 +40,6 @@ function FormAddRecord({
                         accept=".jpg, .jpeg, .png, .svg, .webp"
                         onChange={(event) => handleCoverChange(event, setCover, setCoverPreview)}
                         hidden
-                        required
                     />
                     {coverPreview && (
                         <div className="cover-preview">
