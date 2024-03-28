@@ -14,9 +14,14 @@
 .filters-list {
     list-style: none;
     display: flex;
+    flex-wrap: wrap;
+    row-gap: 15px;
 }
 
 .filters-list li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-right: 20px;
     border: 1px solid rgb(187, 195, 195);
     border-radius: 20px;
@@ -41,4 +46,10 @@
     margin-bottom: 40px;
     border-radius: 30px;
     border: 1px solid rgb(187, 195, 195);
+}
+
+@media screen and (max-width: 836px) {
+    .filters-list li {
+        margin-right: 30px;
+    }
 }

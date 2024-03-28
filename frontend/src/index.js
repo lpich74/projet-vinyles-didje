@@ -7,6 +7,7 @@ import Home from './pages/Home.jsx';
 import MyRecords from './pages/MyRecords.jsx';
 import AddARecord from './pages/AddARecord.jsx';
 import ModifyARecord from './pages/ModifyARecord.jsx';
+import Error from './pages/Error.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -29,6 +30,10 @@ root.render(
           <Route
            path="/modifier-un-disque/:id"
            element={<ModifyARecord />}
+          />
+          <Route
+            path="*"
+            element={<Error />}
           />
         </Routes>
       </Layout>
