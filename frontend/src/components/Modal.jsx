@@ -1,8 +1,9 @@
 import { useEffect, useRef } from "react";
 import { RxCross1 } from "react-icons/rx";
 import '../styles/Modal.css'
+import { handleModify } from "../functions/Functions";
 
-function Modal({ children, isOpen, handleClose }) {
+function Modal({ children, isOpen, handleClose, id }) {
     const dialogRef = useRef(null);
 
     const close = () => {
@@ -19,6 +20,11 @@ function Modal({ children, isOpen, handleClose }) {
         }
     }, [isOpen]);
 
+    const handleModifyClick = () => {
+        handleModify(id); // Call handleModify with recordId as parameter
+        close();
+    };
+
     return (
         <dialog
             ref={dialogRef}
@@ -30,15 +36,26 @@ function Modal({ children, isOpen, handleClose }) {
                 onClick={close}
             />
             {children}
-            <button
-                className="button-modal"
-                type="button"
-                onClick={close}
-                title="close modal"
-                aria-label="close modal"
-            >
-                Fermer
-            </button>
+            <div className="buttons-modal">
+                <button
+                    className="button-modal modify"
+                    type="button"
+                    onClick={handleModifyClick}
+                    title="modify modal"
+                    aria-label="modify modal"
+                >
+                    Modifier
+                </button>
+                <button
+                    className="button-modal close"
+                    type="button"
+                    onClick={close}
+                    title="close modal"
+                    aria-label="close modal"
+                >
+                    Fermer
+                </button>
+            </div>
         </dialog>
     );
 }

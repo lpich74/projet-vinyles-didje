@@ -43,6 +43,26 @@ export async function getMyRecords(setRecords, setFilteredRecords) {
     }
 };
 
+export async function getARecord(id, setRecordData) {
+    try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get(`${API_ROUTES.MY_RECORDS}/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        if (response.status === 200) {
+            setRecordData(response.data);
+        } else {
+            window.alert('Échec lors de la récupération du disque !');
+            console.error('Record failed to load:', response.statusText);
+        }
+    } catch (error) {
+        window.alert('Erreur lors de la récupération du disque !');
+        console.error('Error retrieving the record:', error.message);
+    }
+}
+
 export function handleCoverChange(event, setCover, setCoverPreview) {
     const file = event.target.files[0];
     if (file) {
@@ -97,5 +117,14 @@ export async function handleDelete(recordId, records, setRecords, filteredRecord
             window.alert("Erreur lors de la suppression du disque !");
             console.error('Error while deleting the record:', error.message);
         }
+    }
+};
+
+export async function handleModify(id) {
+    // ouvre une fenêtre de confirmation avant de modifier le disque
+    const confirmation = window.confirm("Êtes-vous sûr de vouloir modifier ce disque ?");
+
+    if (confirmation) {
+        window.location.href = `/modifier-un-disque/${id}`;
     }
 };

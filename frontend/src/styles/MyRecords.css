@@ -10,7 +10,7 @@
     position: absolute;
     cursor: pointer;
     color: red;
-    background-color: rgb(241, 239, 236);
+    background-color: rgb(241, 239, 236, 0.7);
     left: 2px;
     top: 2px;
 }

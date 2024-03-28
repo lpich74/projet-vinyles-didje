@@ -1,69 +1,34 @@
-import { useState } from 'react';
-import axios from 'axios'; // Importer axios
-import { API_ROUTES } from '../utils/constants'; // Importer API_ROUTES
 import { generateDateOptions, handleCoverChange } from '../functions/Functions';
 import StarRating from './StarRating';
 import '../styles/FormAddRecord.css';
 
-function FormAddRecord() {
-    const [cover, setCover] = useState('');
-    const [coverPreview, setCoverPreview] = useState('');
-    const [artist, setArtist] = useState('');
-    const [album, setAlbum] = useState('');
-    const [genre, setGenre] = useState('');
-    const [date, setDate] = useState('');
-    const [grade, setGrade] = useState(0);
-    const [state, setState] = useState('');
-    const [comments, setComments] = useState('');
-    const [loading, setLoading] = useState(false);
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        setLoading(true);
-
-        const token = localStorage.getItem('token');
-        const headers = { 'Authorization': `Bearer ${token}` };
-
-        const formData = new FormData();
-        formData.append('cover', cover);
-        formData.append('artist', artist);
-        formData.append('album', album);
-        formData.append('genre', genre);
-        formData.append('date', date);
-        formData.append('grade', grade);
-        formData.append('state', state);
-        formData.append('comments', comments);
-
-        try {
-            const response = await axios.post(API_ROUTES.RECORDS, formData, { headers: headers });
-            if (response.status === 201) {
-                setCover('');
-                setCoverPreview('');
-                setArtist('');
-                setAlbum('');
-                setGenre('');
-                setDate('');
-                setGrade(0);
-                setState('');
-                setComments('');
-                window.alert('Nouveau disque enregistré !');
-
-                console.log('Record Data:', { cover, artist, album, genre, date, grade, state, comments });
-            } else {
-                window.alert("Échec lors de l'ajout du disque !");
-                console.error('Record failed to load:', response.statusText);
-            }
-        } catch (error) {
-            window.alert("Erreur lors de l'ajout du disque !");
-            console.error('Error while loading the record:', error.message);
-        } finally {
-            setLoading(false);
-        }
-    };
+function FormAddRecord({
+    formSubmit,
+    coverPreview,
+    loading,
+    cover,
+    setCover,
+    setCoverPreview,
+    artist,
+    setArtist,
+    album,
+    setAlbum,
+    genre,
+    setGenre,
+    date,
+    setDate,
+    grade,
+    setGrade,
+    state,
+    setState,
+    comments,
+    setComments,
+    buttonText
+}) {
 
     return (
         <div className='form-box-addrecord'>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={formSubmit}>
                 <div className='cover-preview-box'>
                     <label htmlFor="cover" className={`add-cover ${cover ? 'hidden' : ''}`}>
                         Ajouter Pochette
@@ -161,7 +126,7 @@ function FormAddRecord() {
                 </div>
                 <div className='button-box'>
                     <button type="submit" disabled={loading}>
-                        {loading ? 'Chargement...' : 'Ajouter'} 
+                        {loading ? 'Chargement...' : buttonText} 
                     </button>
                 </div>
             </form>

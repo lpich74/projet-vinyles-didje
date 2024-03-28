@@ -7,6 +7,7 @@ const recordCtrl = require('../controllers/record.js');
 
 router.get('/', recordCtrl.getAllRecords);
 router.get('/myrecords/', auth, recordCtrl.getMyRecords);
+router.get('/myrecords/:id', auth, recordCtrl.getOneRecord);
 
 router.post('/', auth, multer.uploadImage, recordCtrl.createRecord);
 
