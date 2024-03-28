@@ -125,7 +125,7 @@ function FormAddRecord({
                     />
                 </div>
                 <div className='button-box'>
-                    <button type="submit" disabled={loading}>
+                    <button className='btn-submit' type="submit" disabled={loading}>
                         {loading ? 'Chargement...' : buttonText} 
                     </button>
                 </div>

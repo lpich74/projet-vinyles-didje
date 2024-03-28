@@ -67,3 +67,7 @@
 #comments {
     padding: 5px;
 }
+
+.btn-submit {
+    background-color: rgb(134, 25, 114);
+}
