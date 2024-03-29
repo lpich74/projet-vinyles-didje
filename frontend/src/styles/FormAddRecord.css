@@ -71,3 +71,15 @@
 .btn-submit {
     background-color: rgb(134, 25, 114);
 }
+
+@media screen and (max-width: 1173px) {
+    .form-box-addrecord form {
+        margin-top: 60px;
+    }
+}
+
+@media screen and (max-width: 1027px) {
+    .form-box-addrecord form {
+        margin-top: 80px;
+    }
+}

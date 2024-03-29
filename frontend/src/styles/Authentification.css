@@ -52,3 +52,15 @@ button {
 .btn-signin {
     background-color: rgb(134, 25, 114);
 }
+
+@media screen and (max-width: 1027px) {
+    form {
+        margin-top: 60px;
+    }
+}
+
+@media screen and (max-width: 866px) {
+    form {
+        margin-top: 80px;
+    }
+}

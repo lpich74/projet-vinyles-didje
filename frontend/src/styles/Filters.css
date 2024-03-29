@@ -22,6 +22,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: 500;
     margin-right: 20px;
     border: 1px solid rgb(187, 195, 195);
     border-radius: 20px;
