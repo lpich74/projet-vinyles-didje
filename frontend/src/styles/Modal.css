@@ -50,3 +50,11 @@
 .close {
     background-color: rgb(134, 25, 114);
 }
+
+@media screen and (max-width: 680px) {
+    .dialog-modal {
+        width: 70%;
+        min-width: unset;
+        max-width: unset;
+    }
+}

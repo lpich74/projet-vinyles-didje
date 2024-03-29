@@ -53,14 +53,14 @@ button {
     background-color: rgb(134, 25, 114);
 }
 
-@media screen and (max-width: 1027px) {
+@media screen and (max-width: 944px) {
     form {
-        margin-top: 60px;
+        margin-top: 65px;
     }
 }
 
-@media screen and (max-width: 866px) {
-    form {
-        margin-top: 80px;
+@media screen and (max-width: 574px) {
+    .form-box {
+        width: 100%;
     }
 }

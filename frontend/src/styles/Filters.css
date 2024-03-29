@@ -54,3 +54,14 @@
         margin-right: 30px;
     }
 }
+
+@media screen and (max-width: 574px) {
+    h3 {
+        font-size: 17px;   
+    }
+
+    .filters-list li {
+        font-size: 15px;
+        font-weight: 500;
+    }
+}

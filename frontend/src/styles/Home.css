@@ -60,9 +60,14 @@
     }
 }
 
-@media screen and (max-width: 1027px) {
+@media screen and (max-width: 1173px) {
     .title-homepage {
         margin: 50px 0 0 0;
+    }
+}
+
+@media screen and (max-width: 1027px) {
+    .title-homepage {
         font-size: 4.5em;
     }
 
@@ -93,5 +98,35 @@
     .grid-homepage {
         top: -20px;
         margin-bottom: 80px;
+    }
+}
+
+@media screen and (max-width: 574px) {
+    .title-homepage {
+        font-size: 2.8em;
+    }
+
+    .grid-homepage {
+        top: -15px;
+        margin-bottom: 85px;
+    }
+}
+
+@media screen and (max-width: 496px) {
+    .title-homepage {
+        margin: 50px 0 0 0;
+        font-size: 2.4em;
+    }
+
+    .grid-homepage {
+        gap: 8%; 
+        row-gap: 30px;  
+        top: -13px;
+        margin-bottom: 87px;   
+    }
+
+    .grid-homepage img {
+        width: 46%;
+        height: auto;
     }
 }

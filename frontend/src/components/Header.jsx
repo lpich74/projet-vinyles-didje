@@ -14,6 +14,10 @@ function Header() {
         setMenuOpen(!menuOpen);
     };
 
+    const closeMenu = () => {
+        setMenuOpen(false);
+    };
+
     const deleteToken = () => {
         const confirmation = window.confirm("Êtes-vous sûr de bien vouloir vous déconnecter ?");
 
@@ -25,7 +29,8 @@ function Header() {
 
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if (menuRef.current && !menuRef.current.contains(event.target)) {
+            if (menuRef.current && !menuRef.current.contains(event.target) 
+            && !event.target.closest('.menu-icon')) {
                 setMenuOpen(false);
             }
         };
@@ -41,42 +46,32 @@ function Header() {
                 <img src={HeaderLogo} alt='record logo' height={80} width={80} />
                 <h1>Les Vinyles de Didje</h1>
             </div>
-            <nav className='menu-icon' onClick={toggleMenu}>
-                <CiMenuBurger />
+            <div className='menu'>
+                <div className='menu-icon' onClick={toggleMenu}>
+                    <CiMenuBurger className={menuOpen ? 'menu-icon-active' : ''} />
+                </div>
                 {menuOpen &&
-                    <table className="menu-links" ref={menuRef}>
-                        <tbody>
-                            <tr>
-                                <Link to="/" className={`menu-header-link ${location.pathname === '/' && 'active'}`}>
-                                    Accueil
-                                </Link>
-                            </tr>
-                            <tr>
-                                <Link to="/mes-vinyles" className={`menu-header-link ${location.pathname === '/mes-vinyles' && 'active'}`}>
-                                    Mes Vinyles
-                                </Link>
-                            </tr>
-                            <tr>
-                                <Link to="/ajouter-un-disque" className={`menu-header-link ${location.pathname === '/ajouter-un-disque' && 'active'}`}>
-                                    Ajouter un Disque
-                                </Link>
-                            </tr>
-                            <tr>
-                                <a href='mailto:didierpichollet@free.fr' className={`menu-header-link`}>
-                                    Contact
-                                </a>
-                            </tr>
-                            {isUserConnected() &&
-                                <tr>
-                                    <Link className={`menu-header-link disconnect`} onClick={deleteToken}>
-                                        Déconnexion
-                                    </Link>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
+                    <nav className={menuOpen ? 'menu-links show' : 'menu-links'} ref={menuRef}>
+                        <Link to="/" onClick={closeMenu} className={`menu-header-link ${location.pathname === '/' && 'active'}`}>
+                            Accueil
+                        </Link>
+                        <Link to="/mes-vinyles" onClick={closeMenu} className={`menu-header-link ${location.pathname === '/mes-vinyles' && 'active'}`}>
+                            Mes Vinyles
+                        </Link>
+                        <Link to="/ajouter-un-disque" onClick={closeMenu} className={`menu-header-link ${location.pathname === '/ajouter-un-disque' && 'active'}`}>
+                            Ajouter un Disque
+                        </Link>
+                        <a href='mailto:didierpichollet@free.fr' onClick={closeMenu} className={`menu-header-link ${isUserConnected() ? '' : 'contact'}`}>
+                            Contact
+                        </a>
+                        {isUserConnected() &&
+                            <Link className={`menu-header-link disconnect`} onClick={deleteToken}>
+                                Déconnexion
+                            </Link>
+                        }
+                    </nav>
                 }
-            </nav>
+            </div>
             <nav className='header-nav'>
                 <Link to="/" className={`header-link ${location.pathname === '/' && 'active'}`}>
                     Accueil

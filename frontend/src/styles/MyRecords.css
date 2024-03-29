@@ -90,3 +90,28 @@
         width: calc(30.6% - 4px);
     }
 }
+
+@media screen and (max-width: 496px) {
+    .grid-myrecords {
+        gap: 8%;
+        row-gap: 30px;     
+    }
+
+    .image-alone {
+        width: 250px;
+        height: auto;
+    }
+    
+    .image-alone:hover {
+        width: calc(250px - 4px);
+    }
+
+    .image-myrecords {
+        width: 46%;
+        height: auto;
+    }
+
+    .image-myrecords:hover {
+        width: calc(46% - 4px);
+    }
+}

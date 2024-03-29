@@ -24,16 +24,16 @@
     max-width: 200px;
 }
 
-.menu-icon {
-    display: none;
-}
-
 .header-nav {
     margin-top: 70px;
     margin-bottom: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.menu {
+    display: none;
 }
 
 .header-link {
@@ -81,14 +81,114 @@
 }
 
 @media screen and (max-width: 933px) {
-    .menu-icon {
-        cursor: pointer;
-        font-size: 28px;
-        margin: 70px 0px 30px 30px;
-        display: block;
-    }
-    
     .header-nav {
         display: none;
+    }
+
+    .menu {
+        cursor: pointer;
+        display: none;
+        position: relative;
+        font-size: 28px;
+        margin: 60px 0px 40px 30px;
+        display: block;
+    }
+
+    .menu-icon {
+        cursor: pointer;
+        transition: transform 0.5s ease; /* prend 0.5sec pour transformer l'icône  */
+    }
+    
+    .menu-icon:hover {
+        transform: scale(1.3); /* grossit l'icône selon l'échelle  */
+    }
+    
+    .menu-icon-active {
+        animation: rotateIcon 1s ease forwards; /* commence la rotation de l'icône */
+    }
+    
+    @keyframes rotateIcon {
+        from {
+            transform: rotate(0deg); /* rotation de 0deg à... */
+        }
+        to {
+            transform: rotate(180deg); /* ...180deg */
+        }
+    }
+
+    .menu-links {
+        background-color: rgb(241, 239, 236);
+        border: 1px black solid;
+        border-radius: 10px;
+        padding: 10px 35px;
+        position: absolute;
+        flex-direction: column;
+        top: 45px;
+        left: -120px;
+        display: flex;
+        opacity: 0; /* Initially hide the menu */
+        transition: opacity 0.3s ease; /* Add transition for smooth opacity change */
+    }
+    
+    .menu-links.show {
+        opacity: 1; /* Show the menu when it's open */
+    }
+
+    .menu-links .active {
+        font-weight: 600;
+        color: rgb(22, 87, 14);
+    }
+
+    .menu-header-link {
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        text-decoration: none;
+        color: black;
+        border-bottom: 1px dotted black;
+        padding: 13px 0;
+    }
+
+    .menu-header-link:hover {
+        color: rgb(134, 25, 114);
+    }
+
+    .contact {
+        border-bottom: unset;
+    }
+
+    .disconnect {
+        color: red;
+        border-bottom: unset;
+    }
+    
+    .disconnect:hover {
+        color: red;
+        text-decoration: underline;
+    }
+}
+
+@media screen and (max-width: 574px) {
+    .header-global {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    .menu {
+        margin-left: 50px;
+    }
+
+    .menu-header-link {
+        font-size: 15px;
+    }
+
+    .logo-title img {
+        height: 65px;
+        width: 65px;
+    }
+    
+    .logo-title h1 {
+        font-size: 1.5em;
     }
 }
