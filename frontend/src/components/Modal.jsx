@@ -21,7 +21,7 @@ function Modal({ children, isOpen, handleClose, id }) {
     }, [isOpen]);
 
     const handleModifyClick = () => {
-        handleModify(id); // Call handleModify with recordId as parameter
+        handleModify(id); // Appelle la fonction handleModify avec id comme paramètre
         close();
     };
 

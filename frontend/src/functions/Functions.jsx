@@ -44,6 +44,7 @@ export async function getMyRecords(setRecords, setFilteredRecords) {
 };
 
 export async function getARecord(id, setRecordData) {
+
     try {
         const token = localStorage.getItem('token');
         const response = await axios.get(`${API_ROUTES.MY_RECORDS}/${id}`, {
@@ -55,10 +56,12 @@ export async function getARecord(id, setRecordData) {
             setRecordData(response.data);
         } else {
             window.alert('Échec lors de la récupération du disque !');
+            window.location.href = '/*';
             console.error('Record failed to load:', response.statusText);
         }
     } catch (error) {
         window.alert('Erreur lors de la récupération du disque !');
+        window.location.href = '/*';
         console.error('Error retrieving the record:', error.message);
     }
 }
