@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import './index.css';
 import Layout from './components/Layout';
 import Home from './pages/Home.jsx';
@@ -12,7 +12,7 @@ import Error from './pages/Error.jsx';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Router>
+    <HashRouter>
       <Layout>
         <Routes>
           <Route
@@ -37,6 +37,6 @@ root.render(
           />
         </Routes>
       </Layout>
-    </Router>
+    </HashRouter>
   </React.StrictMode>
 );

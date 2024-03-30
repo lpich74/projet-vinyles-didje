@@ -128,6 +128,6 @@ export async function handleModify(id) {
     const confirmation = window.confirm("Êtes-vous sûr de vouloir modifier ce disque ?");
 
     if (confirmation) {
-        window.location.href = `/modifier-un-disque/${id}`;
+        window.location.href = `#/modifier-un-disque/${id}`;
     }
 };

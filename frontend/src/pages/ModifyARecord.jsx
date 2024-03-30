@@ -64,7 +64,7 @@ function ModifyARecord() {
             const response = await axios.put(`${API_ROUTES.RECORDS}/${id}`, formData, { headers: headers });
             if (response.status === 200) {
                 window.alert('Disque modifié !');
-                window.location.href = '/mes-vinyles';
+                window.location.href = '#/mes-vinyles';
             } else {
                 window.alert("Échec lors de la modification du disque !");
                 console.error('Record failed to load:', response.statusText);
