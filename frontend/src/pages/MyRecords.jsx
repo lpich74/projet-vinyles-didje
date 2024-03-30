@@ -13,7 +13,7 @@ function MyRecords() {
     const [filteredRecords, setFilteredRecords] = useState([]);
     const [selectedRecord, setSelectedRecord] = useState(null);
     const [deleteButtonVisible, setDeleteButtonVisible] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     
     const handleClick = (record) => {
         setSelectedRecord(record);
@@ -25,6 +25,8 @@ function MyRecords() {
                 .finally(() => setLoading(false)); // Le loader s'efface après le chargement des disques
         }
     }, []);
+
+    const latestRecords = filteredRecords.slice(0, 40);
     
     return (
         <div style={{ marginBottom: 100 }}>
@@ -39,9 +41,12 @@ function MyRecords() {
                         </div>
                     ) : (
                         <div className='grid-myrecords'>
-                            {filteredRecords.map((record) => (
+                            {latestRecords.reverse().map((record) => (
                                 <div
-                                    className={filteredRecords.length === 1 ? 'image-alone' : 'image-myrecords'}
+                                    className={
+                                        latestRecords.length === 1 ? 'image-alone' :
+                                        latestRecords.length === 2 ? 'image-pair' : 'image-myrecords'
+                                    }
                                     key={record._id}
                                     onMouseEnter={() => setDeleteButtonVisible(record._id)}
                                     onMouseLeave={() => setDeleteButtonVisible(null)}

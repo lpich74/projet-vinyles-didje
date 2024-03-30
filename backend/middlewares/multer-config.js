@@ -35,7 +35,7 @@ const sharpMiddleware = (req, res, next) => {
     const resizedImagePath = path.resolve(req.file.destination, 'resized_images', filename);
   
     sharp(req.file.path)
-      .resize(400, 400)
+      .resize(350, 350)
       .toFile(resizedImagePath)
       .then(() => {
           fs.unlinkSync(req.file.path);

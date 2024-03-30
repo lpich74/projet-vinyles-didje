@@ -33,6 +33,22 @@
     height: auto;
 }
 
+.image-pair {
+    width: 200px;
+    height: auto;      
+}
+
+.image-pair img {
+    width: 100%;
+    height: 100%;   
+}
+
+.image-pair:hover {
+    cursor: pointer;
+    width: calc(200px - 4px);
+    border: 2px solid rgb(134, 25, 114);   
+}
+
 .image-alone img {
     width: 100%;
     height: 100%;

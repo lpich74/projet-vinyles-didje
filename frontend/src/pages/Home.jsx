@@ -5,13 +5,16 @@ import { getAllRecords } from '../functions/Functions';
 
 function Home() {
     const [records, setRecords] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         // Appelle la fonction lorsque le composant se monte
         getAllRecords(setRecords)
             .finally(() => setLoading(false)); 
     }, []); // Array vide = l'effet se produit dès que le composant se monte
+
+    // Obtenir les 40 disques les plus récents
+    const latestRecords = records.slice(0, 40);
 
     return (
         <section className='main-wrapper'>
@@ -23,7 +26,7 @@ function Home() {
                 </div>
             ) : (
                 <div className='grid-homepage'>
-                    {records.map((record) => (
+                    {latestRecords.reverse().map((record) => (
                         <img key={record._id} src={record.coverUrl} alt={record.album} height={200} width={200} />
                     ))}
                 </div>
