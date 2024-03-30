@@ -9,9 +9,9 @@ router.get('/', recordCtrl.getAllRecords);
 router.get('/myrecords/', auth, recordCtrl.getMyRecords);
 router.get('/myrecords/:id', auth, recordCtrl.getOneRecord);
 
-router.post('/', auth, multer.uploadImage, recordCtrl.createRecord);
+router.post('/', auth, multer.uploadImage, multer.sharpMiddleware, recordCtrl.createRecord);
 
-router.put('/:id', auth, multer.uploadImage, recordCtrl.modifyRecord);
+router.put('/:id', auth, multer.uploadImage, multer.sharpMiddleware, recordCtrl.modifyRecord);
 
 router.delete('/:id', auth, recordCtrl.deleteRecord);
 

@@ -82,7 +82,7 @@ exports.modifyRecord = (req, res) => {
                 res.status(403).json({ message: 'Requête non autorisée' });
             } else {
                 const filename = record.coverUrl.split('/images/')[1];
-                fs.unlink(`images/${filename}`, () => {
+                fs.unlink(`images/resized_images/${filename}`, () => {
                     Record.updateOne({ _id: paramsId }, { ...recordObject, _id: paramsId})
                         .then(() => res.status(200).json({ message: 'Disque modifié !' }))
                         .catch(error => res.status(401).json({ error }));
@@ -102,7 +102,7 @@ exports.deleteRecord = (req, res) => {
                 res.status(403).json({ message: 'Requête non autorisée' });
             } else {
                 const filename = record.coverUrl.split('/images/')[1];
-                fs.unlink(`images/${filename}`, () => {
+                fs.unlink(`images/resized_images/${filename}`, () => {
                     Record.deleteOne({ _id: paramsId })
                     .then(() => res.status(200).json({ message: 'Disque supprimé !' }))
                     .catch(error => res.status(401).json({ error }));
