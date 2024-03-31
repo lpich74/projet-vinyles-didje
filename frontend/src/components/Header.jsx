@@ -23,7 +23,6 @@ function Header() {
 
         if (confirmation) {
             localStorage.removeItem('token');
-            window.location.href = 'projet-vinyles-didje/';
         }
     };
 
@@ -65,7 +64,7 @@ function Header() {
                             Contact
                         </a>
                         {isUserConnected() &&
-                            <Link className={`menu-header-link disconnect`} onClick={deleteToken}>
+                            <Link to="/" className={`menu-header-link disconnect`} onClick={deleteToken}>
                                 Déconnexion
                             </Link>
                         }
@@ -86,7 +85,7 @@ function Header() {
                     Contact
                 </a>
                 {isUserConnected() &&
-                    <Link className={`header-link disconnect`} onClick={deleteToken}>
+                    <Link to="/" className={`header-link disconnect`} onClick={deleteToken}>
                         Déconnexion
                     </Link>
                 }
