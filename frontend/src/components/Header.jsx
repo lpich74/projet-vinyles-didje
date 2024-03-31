@@ -23,7 +23,7 @@ function Header() {
 
         if (confirmation) {
             localStorage.removeItem('token');
-            window.location.href = '/';
+            window.location.href = '#/';
         }
     };
 
