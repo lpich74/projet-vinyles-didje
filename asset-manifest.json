@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/projet-vinyles-didje/static/css/main.cc42a084.css",
-    "main.js": "/projet-vinyles-didje/static/js/main.9a37a288.js",
+    "main.js": "/projet-vinyles-didje/static/js/main.f643e2d2.js",
     "static/media/record-logo.png": "/projet-vinyles-didje/static/media/record-logo.8a2b2f2a0fefbe905339.png",
     "index.html": "/projet-vinyles-didje/index.html",
     "main.cc42a084.css.map": "/projet-vinyles-didje/static/css/main.cc42a084.css.map",
-    "main.9a37a288.js.map": "/projet-vinyles-didje/static/js/main.9a37a288.js.map"
+    "main.f643e2d2.js.map": "/projet-vinyles-didje/static/js/main.f643e2d2.js.map"
   },
   "entrypoints": [
     "static/css/main.cc42a084.css",
-    "static/js/main.9a37a288.js"
+    "static/js/main.f643e2d2.js"
   ]
 }
