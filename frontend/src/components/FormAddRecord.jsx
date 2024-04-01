@@ -106,10 +106,12 @@ function FormAddRecord({
                         onChange={(e) => setState(e.target.value)}
                     >
                         <option value="">. . .</option>
+                        <option value="mint">Mint</option>
+                        <option value="near mint">Near Mint</option>
                         <option value="excellent">Excellent</option>
-                        <option value="bon">Bon</option>
-                        <option value="moyen">Moyen</option>
-                        <option value="mauvais">Mauvais</option>
+                        <option value="very good">Very Good</option>
+                        <option value="good">Good</option>
+                        <option value="bad">Bad</option>
                     </select>
                 </div>
                 <div className='label-input comment-box'>
