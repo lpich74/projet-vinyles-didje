@@ -21,6 +21,8 @@ function FormAddRecord({
     setGrade,
     state,
     setState,
+    seriesNumber,
+    setSeriesNumber,
     comments,
     setComments,
     buttonText
@@ -113,6 +115,16 @@ function FormAddRecord({
                         <option value="good">Good</option>
                         <option value="bad">Bad</option>
                     </select>
+                </div>
+                <div className='label-input addrecord'>
+                    <label htmlFor="seriesNumber">N°de série :</label>
+                    <input
+                        type="text"
+                        id="seriesNumber"
+                        name="seriesNumber"
+                        value={seriesNumber}
+                        onChange={(e) => setSeriesNumber(e.target.value)}
+                    />
                 </div>
                 <div className='label-input comment-box'>
                     <label htmlFor="comments">Commentaires :</label>

@@ -9,6 +9,7 @@ const recordSchema = mongoose.Schema({
     date: { type: String, required: true },     
     grade: { type: Number, required: true },
     state: { type: String, required: true },
+    seriesNumber : { type: String },
     comments: { type: String }
 });
 

@@ -15,6 +15,7 @@ function AddARecord() {
   const [date, setDate] = useState('');
   const [grade, setGrade] = useState(0);
   const [state, setState] = useState('');
+  const [seriesNumber, setSeriesNumber] = useState('');
   const [comments, setComments] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -39,6 +40,7 @@ function AddARecord() {
       formData.append('date', date);
       formData.append('grade', grade);
       formData.append('state', state);
+      formData.append('seriesNumber', seriesNumber);
       formData.append('comments', comments);
 
       try {
@@ -52,10 +54,11 @@ function AddARecord() {
               setDate('');
               setGrade(0);
               setState('');
+              setSeriesNumber('');
               setComments('');
               window.alert('Nouveau disque enregistré !');
 
-              console.log('Record Data:', { cover, coverPreview, artist, album, genre, date, grade, state, comments });
+              console.log('Record Data:', { cover, coverPreview, artist, album, genre, date, grade, state, seriesNumber, comments });
           } else {
               window.alert("Échec lors de l'ajout du disque !");
               console.error('Record failed to load:', response.statusText);
@@ -90,6 +93,8 @@ function AddARecord() {
           setGrade={setGrade}
           state={state}
           setState={setState}
+          seriesNumber={seriesNumber}
+          setSeriesNumber={setSeriesNumber}
           comments={comments}
           setComments={setComments}
           buttonText='Ajouter'

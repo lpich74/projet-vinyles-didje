@@ -15,6 +15,7 @@ function ModifyARecord() {
     const [genre, setGenre] = useState('');
     const [date, setDate] = useState('');
     const [grade, setGrade] = useState(0);
+    const [seriesNumber, setSeriesNumber] = useState('');
     const [state, setState] = useState('');
     const [comments, setComments] = useState('');
     const [loading, setLoading] = useState(false);
@@ -33,6 +34,7 @@ function ModifyARecord() {
             setDate(recordData.date);
             setGrade(recordData.grade);
             setState(recordData.state);
+            setSeriesNumber(recordData.seriesNumber);
             setComments(recordData.comments);
         }
     }, [recordData]);
@@ -58,6 +60,7 @@ function ModifyARecord() {
         formData.append('date', date);
         formData.append('grade', grade);
         formData.append('state', state);
+        formData.append('seriesNumber', seriesNumber);
         formData.append('comments', comments);
 
         try {
@@ -99,6 +102,8 @@ function ModifyARecord() {
                     setGrade={setGrade}
                     state={state}
                     setState={setState}
+                    seriesNumber={seriesNumber}
+                    setSeriesNumber={setSeriesNumber}
                     comments={comments}
                     setComments={setComments}
                     buttonText='Modifier'

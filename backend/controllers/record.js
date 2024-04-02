@@ -34,7 +34,7 @@ exports.getOneRecord = (req, res) => {
 
 exports.createRecord = (req, res) => {
     try {
-        const { artist, album, genre, date, grade, state, comments } = req.body;
+        const { artist, album, genre, date, grade, state, seriesNumber, comments } = req.body;
         if (!artist || !album || !date || !grade || !state) {
             return res.status(400).json({ error: 'Champs obligatoires non renseignés !' });
         }
@@ -49,6 +49,7 @@ exports.createRecord = (req, res) => {
             date,
             grade,
             state,
+            seriesNumber,
             comments,
             userId,
         });
@@ -66,7 +67,7 @@ exports.modifyRecord = (req, res) => {
     const userId = req.auth.userId;
     const coverUrl = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
 
-    const { artist, album, genre, date, grade, state, comments } = req.body
+    const { artist, album, genre, date, grade, state, seriesNumber, comments } = req.body
     if (!artist || !album || !date || !grade || !state) {
         return res.status(400).json({ error: 'Champs obligatoires non renseignés !' });
     }
