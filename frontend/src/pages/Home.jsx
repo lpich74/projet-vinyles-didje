@@ -14,7 +14,7 @@ function Home() {
     }, []); // Array vide = l'effet se produit dès que le composant se monte
 
     // Obtenir les 40 disques les plus récents
-    const latestRecords = records.slice(0, 40);
+    const latestRecords = records.slice(0, 80);
 
     return (
         <section className='main-wrapper'>

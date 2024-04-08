@@ -26,7 +26,7 @@ function MyRecords() {
         }
     }, []);
 
-    const latestRecords = filteredRecords.slice(0, 40);
+    const latestRecords = filteredRecords.slice(0, 80);
     
     return (
         <div style={{ marginBottom: 100 }}>
