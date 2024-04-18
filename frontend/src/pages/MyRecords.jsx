@@ -26,7 +26,11 @@ function MyRecords() {
         }
     }, []);
 
-    const latestRecords = filteredRecords.slice(0, 80);
+    const latestRecords = filteredRecords
+        .map((record, index) => ({ record, index }))
+        .sort((a, b) => b.index - a.index)
+        .map(obj => obj.record)
+        .slice(0, 40);
     
     return (
         <div style={{ marginBottom: 100 }}>

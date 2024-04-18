@@ -35,7 +35,6 @@
     position: relative;
     top: -30px;
     width: 100%;
-    margin-bottom: 70px;
     display: flex;
     flex-wrap: wrap;
     gap: 1.11%;
@@ -46,6 +45,12 @@
     width: 9%;
     height: auto;
     box-shadow: 0 1px 1px rgba(0,0,0,0.15), 0 2px 2px rgba(0,0,0,0.15), 0 4px 4px rgba(0,0,0,0.15), 0 8px 8px rgba(0,0,0,0.15);
+}
+
+.count {
+    font-size: 1.3em;
+    margin-top: 20px;
+    margin-bottom: 70px;
 }
 
 @media screen and (max-width: 1450px) {
@@ -73,6 +78,9 @@
 
     .grid-homepage {
         top: -25px;
+    }
+
+    .count {
         margin-bottom: 75px;
     }
 }
@@ -97,6 +105,9 @@
 
     .grid-homepage {
         top: -20px;
+    }
+
+    .count {
         margin-bottom: 80px;
     }
 }
@@ -108,6 +119,9 @@
 
     .grid-homepage {
         top: -15px;
+    }
+
+    .count {
         margin-bottom: 85px;
     }
 }
@@ -122,11 +136,14 @@
         gap: 8%; 
         row-gap: 30px;  
         top: -13px;
-        margin-bottom: 87px;   
     }
 
     .grid-homepage img {
         width: 46%;
         height: auto;
+    }
+
+    .count {
+        margin-bottom: 87px;
     }
 }
