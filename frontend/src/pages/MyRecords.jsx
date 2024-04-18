@@ -45,7 +45,7 @@ function MyRecords() {
                         </div>
                     ) : (
                         <div className='grid-myrecords'>
-                            {latestRecords.reverse().map((record) => (
+                            {latestRecords.map((record) => (
                                 <div
                                     className={
                                         latestRecords.length === 1 ? 'image-alone' :
