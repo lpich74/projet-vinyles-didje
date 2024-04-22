@@ -26,7 +26,7 @@ function PageCounter({records, latestRecords, recordsToDisplay, start, setStart}
                     <TbArrowBackUp className='arrows' onClick={handleClickPreviousRecords} />
                 </>
             }
-            {start + 1}-{start + latestRecords.length} / {records.length}
+            {records.length ? `${start + 1}-${start + latestRecords.length}` : 0} / {records.length}
             {start + recordsToDisplay < records.length &&
                 <>
                     <TbArrowForwardUp className='arrows' onClick={handleClickNextRecords} />

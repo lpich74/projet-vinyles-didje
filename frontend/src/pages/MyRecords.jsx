@@ -28,11 +28,16 @@ function MyRecords() {
         }
     }, []);
 
+    useEffect(() => {
+        // Remet à 0 le nombre de pages quand on lance une recherche par filtres
+        setStart(0);
+    }, [filteredRecords]);
+
     const latestRecords = filteredRecords
         .map((record, index) => ({ record, index }))
         .sort((a, b) => b.index - a.index)
         .map(obj => obj.record)
-        .slice(0, 40);
+        .slice(start, start + 40);
 
     return (
         <div>

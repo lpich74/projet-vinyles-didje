@@ -51,7 +51,7 @@ function Filters({ records, setFilteredRecords }) {
                 </ul>
             </div>
             {activeFilter && (
-                <React.Fragment>
+                <>
                     <div className='search-bar'>
                         <input
                             type='text'
@@ -62,7 +62,7 @@ function Filters({ records, setFilteredRecords }) {
                             onChange={(e) => setSearchTerm(e.target.value.toLowerCase())}
                         />
                     </div>
-                </React.Fragment>
+                </>
             )}
         </div>
     );
