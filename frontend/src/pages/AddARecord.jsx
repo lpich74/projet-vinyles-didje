@@ -72,7 +72,7 @@ function AddARecord() {
   };
 
   return (
-    <div style={{ marginBottom: 100 }}>
+    <div>
       {isUserConnected() ? (
         <FormAddRecord
           formSubmit={handleSubmit}

@@ -61,7 +61,7 @@ function Authentification() {
 
   return (
     <div className='form-box'>
-      <form>
+      <form style={{marginBottom: 100}}>
         <div className='label-input authentification'>
           <label htmlFor="username">Identifiant :</label>
           <input
