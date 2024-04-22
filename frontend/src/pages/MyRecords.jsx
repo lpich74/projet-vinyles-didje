@@ -80,7 +80,7 @@ function MyRecords() {
                             <PageCounter
                                 start={start}
                                 setStart={setStart}
-                                records={records}
+                                records={filteredRecords}
                                 latestRecords={latestRecords}
                                 recordsToDisplay={40}
                             />
