@@ -1,0 +1,17 @@
+.count {
+    font-size: 1.5em;
+    margin-top: 20px;
+    margin-bottom: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.arrows {
+    cursor: pointer;
+}
+
+.arrows:hover {
+    color: rgb(134, 25, 114);
+}

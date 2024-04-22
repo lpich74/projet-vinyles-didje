@@ -2,10 +2,12 @@ import '../styles/Home.css';
 import { useEffect, useState } from 'react';
 import { FaSpinner } from 'react-icons/fa';
 import { getAllRecords } from '../functions/Functions';
+import PageCounter from '../components/PageCounter';
 
 function Home() {
     const [records, setRecords] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [start, setStart] = useState(0);
 
     useEffect(() => {
         // Appelle la fonction lorsque le composant se monte
@@ -18,7 +20,7 @@ function Home() {
         .map((record, index) => ({ record, index })) // Map chaque disque en un objet contenant un disque et son index
         .sort((a, b) => b.index - a.index) // Trie chaque objet selon l'index par ordre décroissant
         .map(obj => obj.record) // Extrait les disques de chaque objet
-        .slice(0, 60); // Garde les 60 plus récents
+        .slice(start, start + 60); // Garde les 60 plus récents
 
     return (
         <section className='main-wrapper'>
@@ -35,9 +37,13 @@ function Home() {
                             <img key={record._id} src={record.coverUrl} alt={record.album} height={200} width={200} />
                         ))}
                     </div>
-                    <div className='count'>
-                        ... / ...
-                    </div>
+                    <PageCounter
+                        start={start}
+                        setStart={setStart}
+                        records={records}
+                        latestRecords={latestRecords}
+                        recordsToDisplay={60}
+                    />
                 </>
             )}
         </section>
