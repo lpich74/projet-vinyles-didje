@@ -117,7 +117,7 @@ function FormAddRecord({
                     </select>
                 </div>
                 <div className='label-input addrecord'>
-                    <label htmlFor="seriesNumber">N° de série :</label>
+                    <label htmlFor="seriesNumber">Label et ref. :</label>
                     <input
                         type="text"
                         id="seriesNumber"

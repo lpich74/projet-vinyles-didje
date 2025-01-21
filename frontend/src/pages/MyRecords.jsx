@@ -34,9 +34,7 @@ function MyRecords() {
     }, [filteredRecords]);
 
     const latestRecords = filteredRecords
-        .map((record, index) => ({ record, index }))
-        .sort((a, b) => b.index - a.index)
-        .map(obj => obj.record)
+        .sort((a, b) => b.artist.localeCompare(a.artist)) // Tri des disques par ordre alphabétique du nom de l'album
         .slice(start, start + 40);
 
     return (

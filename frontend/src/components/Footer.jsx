@@ -1,9 +1,11 @@
 import '../styles/Footer.css'
 
 function Footer() {
+    const currentYear = new Date().getFullYear()
+
     return (
         <footer>
-            <p>© 2024 Les Vinyles de Didje</p>
+            <p>© {currentYear} Les Vinyles de Didje</p>
         </footer>
     )
 }

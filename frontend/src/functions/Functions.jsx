@@ -88,7 +88,7 @@ export function handleCoverChange(event, setCover, setCoverPreview) {
 export function generateDateOptions() {
     const currentYear = new Date().getFullYear();
     const years = [];
-    for (let year = currentYear; year >= 1900; year--) {
+    for (let year = currentYear; year >= 1950; year--) {
         years.push(year);
     }
     return years.map((year) => (

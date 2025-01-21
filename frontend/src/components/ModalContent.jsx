@@ -21,7 +21,7 @@ function ModalContent ({selectedRecord, setSelectedRecord, record}) {
                 <StarRating selectedRecord={selectedRecord} readOnly={true} />
                 <div style={{display: 'flex'}}>État : {selectedRecord.state}</div>
                 <div style={{display: 'flex'}}>
-                    N° de série : {selectedRecord.seriesNumber || 'N/A'}
+                    Label et ref. : {selectedRecord.seriesNumber || 'N/A'}
                 </div>
                 <div style={{fontStyle: 'italic'}}>{selectedRecord.comments}</div>
             </div>
