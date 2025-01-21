@@ -68,6 +68,16 @@
     border: 2px solid rgb(134, 25, 114);
 }
 
+.count-top {
+    margin-top: 0px;
+    margin-bottom: 45px;
+}
+
+.count-bottom {
+    margin-top: 20px;
+    margin-bottom: 70px;
+}
+
 @media screen and (max-width: 1450px) {
     .grid-myrecords {
         gap: 4%;

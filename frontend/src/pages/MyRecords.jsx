@@ -51,6 +51,15 @@ function MyRecords() {
                         </div>
                     ) : (
                         <>
+                            <div className='count-top'>
+                                <PageCounter
+                                    start={start}
+                                    setStart={setStart}
+                                    records={filteredRecords}
+                                    latestRecords={latestRecords}
+                                    recordsToDisplay={40}
+                                />
+                            </div>
                             <div className='grid-myrecords'>
                                 {latestRecords.map((record) => (
                                     <div
@@ -81,13 +90,15 @@ function MyRecords() {
                                     </div>
                                 ))}
                             </div>
-                            <PageCounter
-                                start={start}
-                                setStart={setStart}
-                                records={filteredRecords}
-                                latestRecords={latestRecords}
-                                recordsToDisplay={40}
-                            />
+                            <div className='count-bottom'>
+                                <PageCounter
+                                    start={start}
+                                    setStart={setStart}
+                                    records={filteredRecords}
+                                    latestRecords={latestRecords}
+                                    recordsToDisplay={40}
+                                />
+                            </div>
                         </>
                     )}
                 </section>
