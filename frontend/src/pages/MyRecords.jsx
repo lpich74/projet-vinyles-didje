@@ -34,7 +34,8 @@ function MyRecords() {
     }, [filteredRecords]);
 
     const latestRecords = filteredRecords
-        .sort((a, b) => b.artist.localeCompare(a.artist)) // Tri des disques par ordre alphabétique du nom de l'album
+        .sort((a, b) => b.date.localeCompare(a.date)) // Tri des disques par date de sortie de l'album
+        .sort((a, b) => b.artist.localeCompare(a.artist)) // Tri des disques par ordre alphabétique du nom de l'artiste
         .slice(start, start + 40);
 
     return (
